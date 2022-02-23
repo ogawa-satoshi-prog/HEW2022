@@ -110,6 +110,13 @@ io.sockets.on('connection', (socket) => {
   //     }
   //   );
   // });
+
+  // 画面22番の確認ボタン（SELECT句を必要に応じて書き換えてください）
+  // socket.on('confirm_btn', (data) => {
+    // 生徒がスコアボードを確認したことが通知された
+    // JSONの処理
+    // io.sockets.emit('', );
+  // });
 });
 
 

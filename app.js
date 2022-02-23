@@ -38,9 +38,9 @@ app
   })
   .get('/t_master', (req, res) => {
     DB.query('select * from subject;', function (err, results, fields) {
-      if (err){
-          throw err; 
-      } 
+      if (err) {
+        throw err;
+      }
       let categorys = results[0];
       res.render(CLIENT_ROOT + 't_master.ejs', { categorys: categorys })
     });
@@ -115,18 +115,17 @@ io.sockets.on('connection', (socket) => {
 
 // ログイン関数
 // @str id, str pass
-function login(id, pass){
+// login("05016", "horinouchi");
+function login(id, pass) {
   let sql = "SELECT * FROM User WHERE login = " + id;
-  connection.query(sql, (err, results)=>{
+  connection.query(sql, (err, results) => {
     // パスワード認証
     if (!err && results[0].password == crypto.createHash('sha256').update(pass).digest('hex')) {
       // 成功
       console.log('Login: ' + results[0].name);
-    }else{
+    } else {
       // 失敗
       console.log('Login failed');
     }
   })
 }
-
-login("05016", "horinouchi");

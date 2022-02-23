@@ -55,3 +55,9 @@ btn5.addEventListener('click', () => {
 socket.on('resQuestionCommentary', (data) => {
   appMsg("[" + data.question[0].que_id + "]" + data.question[0].question);
 });
+
+// 画面22番「確認するボタン」
+const btn6 = document.getElementById('btn6');
+btn6.addEventListener('click', () => {
+  socket.emit('confirm_btn', '2'); // 第２引数を生徒の番号の値に変更する必要あり
+}, false);

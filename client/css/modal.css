@@ -1,0 +1,47 @@
+.modal_wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.modal_wrapper .modal_contents {
+  width: 70%;
+  height: 90%;
+  background-color: white;
+  border-radius: 20px;
+  position: relative;
+}
+
+.modal_wrapper .modal_contents .modal_close {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  color: #707070;
+  position: absolute;
+  top: 43px;
+  right: 40px;
+  cursor: pointer;
+  transition: color 1s;
+}
+
+.modal_wrapper .modal_contents .modal_close :hover {
+  color: #EF5F5F;
+}
+
+.modal_wrapper .modal_contents .modal_main_contents {
+  width: 747px;
+  height: 100%;
+  padding: 40px 0;
+  margin: 0 auto;
+}
+/*# sourceMappingURL=modal.css.map */

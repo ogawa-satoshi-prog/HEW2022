@@ -5,7 +5,7 @@ const express = require('express');
 const mysql = require('mysql');
 
 const crypto = require('crypto');
-
+const bodyParser = require('body-parser')
 // json読み込み
 // const json = require('data.json');
 
@@ -29,12 +29,35 @@ const connection = mysql.createConnection(DB);
 server.listen(PORT);
 console.log('http://localhost:3000');
 
-
 // メソッドチェーンでルーティング記述
 app
   .set("view engine", "ejs")
+  .use(bodyParser.urlencoded({ extended: true }))
   .get('/', (req, res) => {
     res.render(CLIENT_ROOT + "/toppage.ejs");
+  })
+  .post('/', (req, res) => {
+    // toppageのログイン処理
+    console.log('ログイン処理...');
+    let user = req.body;
+
+    // if (user.id == '' || user.password == '') {
+      
+    // }
+    let sql = "SELECT * FROM User WHERE login = " + user.id;
+    console.log(user);
+    connection.query(sql, (err, results) => {
+      // パスワード認証
+      if (!err && results[0].password == crypto.createHash('sha256').update(user.pass).digest('hex')) {
+        // 成功
+        console.log('Login: ' + results[0].name);
+        res.render(CLIENT_ROOT + "/toppage.ejs");
+      } else {
+        // 失敗
+        console.log('Login failed');
+        res.render(CLIENT_ROOT + "/toppage.ejs");
+      }
+    })
   })
   .get('/t_master', (req, res) => {
     DB.query('select * from subject;', function (err, results, fields) {

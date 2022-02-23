@@ -4,6 +4,11 @@ const express = require('express');
 // const ejs = require("ejs");
 const mysql = require('mysql');
 
+const crypto = require('crypto');
+
+// json読み込み
+// const json = require('data.json');
+
 
 const app = express();
 const server = http.Server(app);
@@ -47,14 +52,33 @@ const socketio = require('socket.io');
 let io = socketio(server);
 
 // 1.アクセスされ、ソケット通信のコネクションが確立された時
-
+let arr = [];
 io.sockets.on('connection', (socket) => {
+  arr.push(socket.id);
   console.log('connection');
-  // // 以下の形で受信イベントを登録する
+  console.log(arr);
+
+  // 以下の形で受信イベントを登録する
   // socket.on(受信イベント名, (data)=>{
   //   // 処理
   //   // 送信処理例
+
+  //   // 全体送信
   //   io.sockets.emit(送信イベント名, 送信オブジェクト);
+
+  //   // 全体送信(送信者除く)
+  //   socket.broadcast.emit(送信イベント名, 送信オブジェクト);
+
+  //   // 個別送信(特定の宛先)
+  //   io.sockets.socket(ソケットID).emit(送信イベント名, 送信オブジェクト);
+
+  //   // 個別送信(送信者宛)
+  //   socket.emit(送信イベント名, 送信オブジェクト);
+  //   io.sockets.socket(socket.id).emit(送信イベント名, 送信オブジェクト);
+
+  //   // つまり、以下の二つは同じ
+  //   // io.sockets.socket(socket.id)
+  //   // socket
   // });
 
   // // 出題設定（問題選択）
@@ -87,3 +111,22 @@ io.sockets.on('connection', (socket) => {
   //   );
   // });
 });
+
+
+// ログイン関数
+// @str id, str pass
+function login(id, pass){
+  let sql = "SELECT * FROM User WHERE login = " + id;
+  connection.query(sql, (err, results)=>{
+    // パスワード認証
+    if (!err && results[0].password == crypto.createHash('sha256').update(pass).digest('hex')) {
+      // 成功
+      console.log('Login: ' + results[0].name);
+    }else{
+      // 失敗
+      console.log('Login failed');
+    }
+  })
+}
+
+login("05016", "horinouchi");

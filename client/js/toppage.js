@@ -1,6 +1,3 @@
-let socket = io.connect();
-console.log(socket);
-
 // サーバーで指定されたイベントをトリガーとして扱う
 socket.on('server_to_client', (data) => {
   appMsg("受信:" + data.text);

@@ -6,8 +6,11 @@ const mysql = require('mysql');
 
 const crypto = require('crypto');
 const bodyParser = require('body-parser')
-// json読み込み
-// const json = require('data.json');
+
+
+// ステータスオブジェクト
+let state = require('./state.json');
+console.log(state);
 
 
 const app = express();
@@ -58,6 +61,9 @@ io.sockets.on('connection', (socket) => {
   arr.push(socket.id);
   console.log('connection');
   console.log(arr);
+
+  // ソケットIDを保存
+
 
   // 以下の形で受信イベントを登録する
   // socket.on(受信イベント名, (data)=>{
@@ -120,7 +126,7 @@ io.sockets.on('connection', (socket) => {
   // });
 });
 
-  // toppageのログイン処理
+// toppageのログイン処理
 function login(req, res) {
   let form = req.body;
 

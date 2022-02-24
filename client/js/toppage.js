@@ -20,12 +20,10 @@ btn1.addEventListener('click', () => {
   socket.emit('client_to_server', { text: 'world' });
 }, false);
 
-const btn2 = document.getElementById('btn2');
-btn2.addEventListener('click', () => {
-  socket.emit('stop', 'ちょっと待った!!');
-}, false);
-
-// --------------------------------以下、小川が追加した３種類---------------------------------------
+/* -----------------------------------------------------------------------
+* 以下、小川が追加した４種類
+* ID（ボタン名を変更する必要あり）
+--------------------------------------------------------------------------*/
 
 const btn3 = document.getElementById('btn3');
 btn3.addEventListener('click', () => {
@@ -56,8 +54,5 @@ socket.on('resQuestionCommentary', (data) => {
   appMsg("[" + data.question[0].que_id + "]" + data.question[0].question);
 });
 
-// 画面22番「確認するボタン」
-const btn6 = document.getElementById('btn6');
-btn6.addEventListener('click', () => {
-  socket.emit('confirm_btn', '2'); // 第２引数を生徒の番号の値に変更する必要あり
-}, false);
+
+

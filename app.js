@@ -36,29 +36,7 @@ app
   .get('/', (req, res) => {
     res.render(CLIENT_ROOT + "/toppage.ejs");
   })
-  .post('/', (req, res) => {
-    // toppageのログイン処理
-    console.log('ログイン処理...');
-    let user = req.body;
-
-    // if (user.id == '' || user.password == '') {
-      
-    // }
-    let sql = "SELECT * FROM User WHERE login = " + user.id;
-    console.log(user);
-    connection.query(sql, (err, results) => {
-      // パスワード認証
-      if (!err && results[0].password == crypto.createHash('sha256').update(user.pass).digest('hex')) {
-        // 成功
-        console.log('Login: ' + results[0].name);
-        res.render(CLIENT_ROOT + "/toppage.ejs");
-      } else {
-        // 失敗
-        console.log('Login failed');
-        res.render(CLIENT_ROOT + "/toppage.ejs");
-      }
-    })
-  })
+  .post('/', login)
   .get('/t_master', (req, res) => {
     DB.query('select * from subject;', function (err, results, fields) {
       if (err) {
@@ -136,26 +114,37 @@ io.sockets.on('connection', (socket) => {
 
   // 画面22番の確認ボタン（SELECT句を必要に応じて書き換えてください）
   // socket.on('confirm_btn', (data) => {
-    // 生徒がスコアボードを確認したことが通知された
-    // JSONの処理
-    // io.sockets.emit('', );
+  // 生徒がスコアボードを確認したことが通知された
+  // JSONの処理
+  // io.sockets.emit('', );
   // });
 });
 
+  // toppageのログイン処理
+function login(req, res) {
+  let form = req.body;
 
-// ログイン関数
-// @str id, str pass
-// login("05016", "horinouchi");
-function login(id, pass) {
-  let sql = "SELECT * FROM User WHERE login = " + id;
-  connection.query(sql, (err, results) => {
-    // パスワード認証
-    if (!err && results[0].password == crypto.createHash('sha256').update(pass).digest('hex')) {
-      // 成功
-      console.log('Login: ' + results[0].name);
-    } else {
-      // 失敗
-      console.log('Login failed');
-    }
-  })
+  if (form.id == '' || form.password == '') {
+    res.render(CLIENT_ROOT + "/toppage.ejs");
+  } else {
+    let sql = "SELECT * FROM User WHERE login = " + form.id;
+    connection.query(sql, (err, results) => {
+      // パスワード認証
+      if (!err && results[0].password == crypto.createHash('sha256').update(form.password).digest('hex')) {
+        // 成功
+        console.log('ログイン成功: ' + results[0].name);
+
+        // 教員生徒 分別画面遷移
+        if (results[0].exp == -1) {
+          res.render(CLIENT_ROOT + "/t_master.ejs");
+        } else {
+          res.render(CLIENT_ROOT + "/s_master.ejs");
+        }
+      } else {
+        // 失敗
+        console.log('ログイン失敗');
+        res.render(CLIENT_ROOT + "/toppage.ejs");
+      }
+    });
+  }
 }

@@ -35,16 +35,6 @@ app
     res.render(CLIENT_ROOT + "/toppage.ejs");
   })
   .post('/', login)
-  .get('/t_master', (req, res) => {
-    DB.query('select * from subject;', function (err, results, fields) {
-      if (err) {
-        throw err;
-      }
-      let categorys = results;
-      console.log(categorys);
-      res.render(CLIENT_ROOT + '/t_master.ejs', { categorys: categorys })
-    });
-  })
   .use(express.static('client'));
 
 // socket通信
@@ -155,8 +145,13 @@ function login(req, res) {
           console.log("教員ログイン: " + results[0].name);
           const loginId = form.id;
           setTeacher({ id: loginId, name: results[0].name });
-          res.render(CLIENT_ROOT + "/t_master.ejs", {
-            loginId: loginId
+          DB.query('select * from subject;', function (err, results, fields) {
+            if (err) {
+              throw err;
+            }
+            let categorys = results;
+            console.log(categorys);
+            res.render(CLIENT_ROOT + '/t_master.ejs', { categorys: categorys, loginId: loginId })
           });
         } else {
           // 生徒ログイン

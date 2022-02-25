@@ -24,10 +24,6 @@ const DB = mysql.createConnection({
   multipleStatements: true //★複数クエリの実行を許可する
 });
 
-
-// データベース接続
-const connection = mysql.createConnection(DB);
-
 server.listen(PORT);
 console.log('http://localhost:3000');
 
@@ -101,7 +97,7 @@ io.sockets.on('connection', (socket) => {
 
   // // 出題設定（問題選択）
   // socket.on('next', (data) => {
-  //   connection.query(
+  //   DB.query(
   //     'SELECT id,question FROM question WHERE subject_id=' + data,
   //     (error, results) => {
   //       io.sockets.emit('resQuestion', { question: results });
@@ -111,7 +107,7 @@ io.sockets.on('connection', (socket) => {
 
   // // 問題を見る（SELECT句を必要に応じて書き換えてください）
   // socket.on('detail', (data) => {
-  //   connection.query(
+  //   DB.query(
   //     'SELECT * FROM question WHERE que_id=' + data,
   //     (error, results) => {
   //       io.sockets.emit('resQuestionDetail', { question: results });
@@ -121,7 +117,7 @@ io.sockets.on('connection', (socket) => {
 
   // // 解説ボタン（SELECT句を必要に応じて書き換えてください）
   // socket.on('commentary', (data) => {
-  //   connection.query(
+  //   DB.query(
   //     'SELECT * FROM question WHERE que_id=' + data,
   //     (error, results) => {
   //       io.sockets.emit('resQuestionCommentary', { question: results });
@@ -152,7 +148,7 @@ function login(req, res) {
     res.render(CLIENT_ROOT + "/toppage.ejs");
   } else {
     let sql = "SELECT * FROM User WHERE login = " + form.id;
-    connection.query(sql, (err, results) => {
+    DB.query(sql, (err, results) => {
       // パスワード認証
       if (!err && results[0].password == crypto.createHash('sha256').update(form.password).digest('hex')) {
         // 教員生徒 分別画面遷移
@@ -160,7 +156,7 @@ function login(req, res) {
           // 教員ログイン
           console.log("教員ログイン: " + results[0].name);
           const loginId = form.id;
-          setTeacher({ id: form.id, name: results[0].name });
+          setTeacher({ id: loginId, name: results[0].name });
           res.render(CLIENT_ROOT + "/t_master.ejs", {
             loginId: loginId
           });
@@ -169,11 +165,11 @@ function login(req, res) {
           const loginId = form.id;
           const userName = results[0].name;
           const lv = Math.floor(results[0].exp / 10);
-          setStudent({ id: form.id, name: results[0].name, exp: results[0].exp });
+          setStudent({ id: loginId, name: userName, exp: lv });
           res.render(CLIENT_ROOT + "/s_master.ejs", {
             loginId: loginId,
-            userName: results[0].name,
-            lv: Math.floor(results[0].exp / 10)
+            userName: userName,
+            lv: lv
           });
           console.log("生徒ログイン: " + results[0].name);
         }

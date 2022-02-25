@@ -117,16 +117,19 @@ io.sockets.on('connection', (socket) => {
   // });
 
   // 画面22番の確認ボタン（SELECT句を必要に応じて書き換えてください）
-  // socket.on('confirm_btn', (data) => {
-  // 生徒がスコアボードを確認したことが通知された
-  // JSONの処理
-  // io.sockets.emit('', );
-  // });
+  socket.on('confirm_btn', (data) => {
+    // 生徒がスコアボードを確認したことが通知された
+    // console.log(socket.id);
+    
+    // JSONの処理
+    // io.sockets.emit('', );
+  });
 
   // ちょっと待ったボタン
-    socket.on('confirm_btn', (data) => {
-      // ちょっと待った時の処理
-    });
+  socket.on('confirm_btn', (data) => {
+    // ちょっと待った時の処理
+  });
+
 });
 
 // toppageのログイン処理

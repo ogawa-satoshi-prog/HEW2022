@@ -41,9 +41,9 @@ app
   .post('/', login)
   .get('/t_master', (req, res) => {
     DB.query('select * from subject;', function (err, results, fields) {
-      if (err){
-          throw err; 
-      } 
+      if (err) {
+        throw err;
+      }
       let categorys = results;
       console.log(categorys);
       res.render(CLIENT_ROOT + '/t_master.ejs', { categorys: categorys })
@@ -88,11 +88,11 @@ io.sockets.on('connection', (socket) => {
   //   // io.sockets.socket(socket.id)
   //   // socket
   // });
-  socket.on("subject",(subject_id) => {
+  socket.on("subject", (subject_id) => {
     DB.query('select * from que where subject_id = ' + subject_id + ';', function (err, results, fields) {
-      if (err){
-          throw err; 
-      } 
+      if (err) {
+        throw err;
+      }
       let ques = results;
       console.log(ques);
       socket.emit("question", ques);
@@ -170,8 +170,8 @@ function login(req, res) {
           setStudent({ id: form.id, name: results[0].name, exp: results[0].exp });
           res.render(CLIENT_ROOT + "/s_master.ejs", {
             loginId: loginId,
-            userName = results[0].name,
-            lv = Math.floor(results[0].exp / 10)
+            userName: results[0].name,
+            lv: Math.floor(results[0].exp / 10)
           });
           console.log("生徒ログイン: " + results[0].name);
         }

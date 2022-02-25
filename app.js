@@ -10,8 +10,6 @@ const bodyParser = require('body-parser')
 
 // ステータスオブジェクト
 let state = require('./state.json');
-console.log(state);
-
 
 const app = express();
 const server = http.Server(app);
@@ -137,13 +135,18 @@ function login(req, res) {
     connection.query(sql, (err, results) => {
       // パスワード認証
       if (!err && results[0].password == crypto.createHash('sha256').update(form.password).digest('hex')) {
-        // 成功
-        console.log('ログイン成功: ' + results[0].name);
-
         // 教員生徒 分別画面遷移
         if (results[0].exp == -1) {
+          // 教員ログイン
+          console.log("教員ログイン: " + results[0].name);
+          const loginId = form.id;
           res.render(CLIENT_ROOT + "/t_master.ejs");
         } else {
+          // 生徒ログイン
+          console.log("生徒ログイン: " + results[0].name);
+          const loginId = form.id;
+          const userName = results[0].name;
+          const lv = Math.floor(results[0].exp / 10);
           res.render(CLIENT_ROOT + "/s_master.ejs");
         }
       } else {
@@ -154,3 +157,14 @@ function login(req, res) {
     });
   }
 }
+
+function setUserInfo(socket){
+  console.log("ソケットID: " + socket.id);
+  let tempUser = state.user.tempStudents;
+  tempUser.socketId = socket.id;
+}
+
+// // テスト中処理
+// function test(){
+
+// }

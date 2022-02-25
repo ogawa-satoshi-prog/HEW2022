@@ -56,13 +56,12 @@ let io = socketio(server);
 // 1.アクセスされ、ソケット通信のコネクションが確立された時
 io.sockets.on('connection', (socket) => {
   console.log('connection: ' + socket.id);
-  // ソケットIDを保存
 
+  // ソケットIDを保存
   socket.on('send_id', (loginId) => {
     console.log('on(send_id): ' + loginId);
     let student = state.user.students.find((st) => st.id == loginId);
     student.socketId = socket.id;
-    console.log(state);
   });
 
   // 以下の形で受信イベントを登録する
@@ -147,6 +146,7 @@ function login(req, res) {
           // 教員ログイン
           console.log("教員ログイン: " + results[0].name);
           const loginId = form.id;
+          setTeacher({ id: form.id, name: results[0].name });
           res.render(CLIENT_ROOT + "/t_master.ejs", {
             loginId: loginId
           });
@@ -172,9 +172,16 @@ function login(req, res) {
   }
 }
 
-// stateにuser登録
+// stateにstudent登録
 function setStudent(obj) {
   let st = Object.assign({}, state.user.tempStudents);
   Object.assign(st, obj); // 上書き
   state.user.students.push(st); // 配列に追加
+}
+
+// stateにteacher登録
+function setTeacher(obj) {
+  let te = Object.assign({}, state.user.tempTeachers);
+  Object.assign(te, obj); // 上書き
+  state.user.students.push(te); // 配列に追加
 }

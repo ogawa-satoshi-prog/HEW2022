@@ -1,5 +1,5 @@
 let socket = io.connect();
-
+socket.emit('send_id', loginId);
 
 /*
 // カンプにはないけど、生徒側にも「解説ボタン」は付けるのかな？

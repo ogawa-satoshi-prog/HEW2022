@@ -124,6 +124,11 @@ io.sockets.on('connection', (socket) => {
   // JSONの処理
   // io.sockets.emit('', );
   // });
+
+  // ちょっと待ったボタン
+    socket.on('confirm_btn', (data) => {
+      // ちょっと待った時の処理
+    });
 });
 
 // toppageのログイン処理

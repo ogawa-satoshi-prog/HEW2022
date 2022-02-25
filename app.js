@@ -48,8 +48,8 @@ io.sockets.on('connection', (socket) => {
   // ソケットIDを保存
   socket.on('send_id', (loginId) => {
     console.log('on(send_id): ' + loginId);
-    let student = state.user.students.find((st) => st.id == loginId);
-    student.socketId = socket.id;
+    // let student = state.user.students.find((st) => st.id == loginId);
+    // student.socketId = socket.id;
   });
 
   // 以下の形で受信イベントを登録する

@@ -2,7 +2,7 @@ $(function () {
     let socket = io.connect();
     console.log(socket);
 
-    //socket.emit('send_id', loginId);
+    socket.emit('send_id', loginId);
 
     $('#btn1').click(function () {
         socket.emit("subject", $('select[name="subject"]').val());

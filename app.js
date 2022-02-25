@@ -5,11 +5,22 @@ const express = require('express');
 const mysql = require('mysql');
 
 const crypto = require('crypto');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 
+const color = {
+  red: '\u001b[31m',
+  green: '\u001b[32m',
+  yellow: '\u001b[33m',
+  blue: '\u001b[34m',
+  magenta: '\u001b[35m',
+  cyan: '\u001b[36m',
+  reset: '\u001b[0m'
+};
 
-// ステータスオブジェクト
-let state = require('./state.json');
+// サーバー情報
+let user = require('./state.json').user;
+let test = require('./state.json').test;
+
 
 const app = express();
 const server = http.Server(app);
@@ -41,15 +52,18 @@ app
 const socketio = require('socket.io');
 let io = socketio(server);
 
-// 1.アクセスされ、ソケット通信のコネクションが確立された時
+// コネクション確立
 io.sockets.on('connection', (socket) => {
-  console.log('connection: ' + socket.id);
-
+  console.log(`ソケット接続: ${socket.id}`);
   // ソケットIDを保存
   socket.on('send_id', (loginId) => {
-    console.log('on(send_id): ' + loginId);
-    // let student = state.user.students.find((st) => st.id == loginId);
-    // student.socketId = socket.id;
+    let student = user.students.find((st) => st.id == loginId);
+    student.socketId = socket.id;
+    console.log(`ソケットID登録: ${student.name} ${socket.id}`);
+  });
+
+  socket.on('disconnect', (reason)=>{
+    console.log(`ソケット切断: ${socket.id}`);
   });
 
   // 以下の形で受信イベントを登録する
@@ -80,7 +94,6 @@ io.sockets.on('connection', (socket) => {
         throw err;
       }
       let ques = results;
-      console.log(ques);
       socket.emit("question", ques);
     });
   });
@@ -119,7 +132,7 @@ io.sockets.on('connection', (socket) => {
   socket.on('confirm_btn', (data) => {
     // 生徒がスコアボードを確認したことが通知された
     // console.log(socket.id);
-    
+
     // JSONの処理
     // io.sockets.emit('', );
   });
@@ -139,56 +152,52 @@ function login(req, res) {
   } else {
     let sql = "SELECT * FROM User WHERE login = " + form.id;
     DB.query(sql, (err, results) => {
-      console.log('err' + err);
-      console.log('results' + results);
       // パスワード認証
       if (!err && results[0] && results[0].password == crypto.createHash('sha256').update(form.password).digest('hex')) {
         // 教員生徒 分別画面遷移
+        const loginId = form.id;
         if (results[0].exp == -1) {
           // 教員ログイン
-          console.log("教員ログイン: " + results[0].name);
-          const loginId = form.id;
           setTeacher({ id: loginId, name: results[0].name });
           DB.query('select * from subject;', function (err, results, fields) {
             if (err) {
               throw err;
             }
             let categorys = results;
-            console.log(categorys);
             res.render(CLIENT_ROOT + '/t_master.ejs', { categorys: categorys, loginId: loginId })
           });
+          console.log(`${color.blue}教員ログイン: ${loginId} ${results[0].name}${color.reset}`);
         } else {
           // 生徒ログイン
-          const loginId = form.id;
           const userName = results[0].name;
           const lv = Math.floor(results[0].exp / 10);
-          setStudent({ id: loginId, name: userName, exp: lv });
+          setStudent({ id: loginId, name: userName, exp: results[0].exp });
           res.render(CLIENT_ROOT + "/s_master.ejs", {
             loginId: loginId,
             userName: userName,
             lv: lv
           });
-          console.log("生徒ログイン: " + results[0].name);
+          console.log(`${color.blue}生徒ログイン: ${loginId} ${userName}${color.reset}`);
         }
       } else {
         // 失敗
-        console.log('ログイン失敗');
+        console.log(`${color.red}ログイン失敗${color.reset}`);
         res.render(CLIENT_ROOT + "/toppage.ejs");
       }
     });
   }
 }
 
-// stateにstudent登録
+// userにstudent登録
 function setStudent(obj) {
-  let st = Object.assign({}, state.user.tempStudents);
+  let st = Object.assign({}, user.tempStudents);
   Object.assign(st, obj); // 上書き
-  state.user.students.push(st); // 配列に追加
+  user.students.push(st); // 配列に追加
 }
 
-// stateにteacher登録
+// userにteacher登録
 function setTeacher(obj) {
-  let te = Object.assign({}, state.user.tempTeachers);
+  let te = Object.assign({}, user.tempTeachers);
   Object.assign(te, obj); // 上書き
-  state.user.students.push(te); // 配列に追加
+  user.students.push(te); // 配列に追加
 }

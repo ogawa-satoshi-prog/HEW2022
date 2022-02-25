@@ -141,6 +141,8 @@ io.sockets.on('connection', (socket) => {
   socket.on('confirm_btn', (data) => {
     // ちょっと待った時の処理
   });
+
+  // 先生が試験開始ボタンを押した時に、生徒側に問題と制限時間を送る処理が必要
 });
 
 // toppageのログイン処理

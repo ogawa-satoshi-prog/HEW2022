@@ -1,5 +1,25 @@
-let socket = io.connect();
-socket.emit('send_id', loginId);
+// 処理を記述するためにモーダル作ってみましたが、書き方が間違ってたらごめんなさい
+// 処理はまだ付けてません
+$(function () {
+  let socket = io.connect();
+  socket.emit('send_id', loginId);
+  $('#modal1').hide();
+  $('#modal2').hide();
+
+  $('#btn3').on('click',function(){
+    $('#modal1').fadeIn();
+  });
+  $('#btn4').on('click',function(){
+      $('#modal1').fadeOut().hide();
+      $('#modal2').fadeIn();
+  });
+  $('#confirm').on('click',function(){
+    $('#modal2').fadeOut().hide();
+  });
+});
+
+
+
 
 /*
 // カンプにはないけど、生徒側にも「解説ボタン」は付けるのかな？
@@ -29,7 +49,7 @@ btn2.addEventListener('click', () => {
 }, false);
 */
 // 画面22番「確認するボタン」
-const btn6 = document.getElementById('btn6');
-btn6.addEventListener('click', () => {
+const confirm = document.getElementById('confirm');
+confirm.addEventListener('click', () => {
   socket.emit('confirm_btn', ''); // 第２引数を生徒の番号の値に変更する必要なし
 }, false);

@@ -4,6 +4,12 @@ const express = require('express');
 // const ejs = require("ejs");
 const mysql = require('mysql');
 
+const crypto = require('crypto');
+const bodyParser = require('body-parser')
+
+
+// ステータスオブジェクト
+let state = require('./state.json');
 
 const app = express();
 const server = http.Server(app);
@@ -25,13 +31,14 @@ const connection = mysql.createConnection(DB);
 server.listen(PORT);
 console.log('http://localhost:3000');
 
-
 // メソッドチェーンでルーティング記述
 app
   .set("view engine", "ejs")
+  .use(bodyParser.urlencoded({ extended: true }))
   .get('/', (req, res) => {
     res.render(CLIENT_ROOT + "/toppage.ejs");
   })
+  .post('/', login)
   .get('/t_master', (req, res) => {
     DB.query('select * from subject;', function (err, results, fields) {
       if (err){
@@ -49,14 +56,36 @@ const socketio = require('socket.io');
 let io = socketio(server);
 
 // 1.アクセスされ、ソケット通信のコネクションが確立された時
-
+let arr = [];
 io.sockets.on('connection', (socket) => {
+  arr.push(socket.id);
   console.log('connection');
-  // // 以下の形で受信イベントを登録する
+  console.log(arr);
+
+  // ソケットIDを保存
+
+
+  // 以下の形で受信イベントを登録する
   // socket.on(受信イベント名, (data)=>{
   //   // 処理
   //   // 送信処理例
+
+  //   // 全体送信
   //   io.sockets.emit(送信イベント名, 送信オブジェクト);
+
+  //   // 全体送信(送信者除く)
+  //   socket.broadcast.emit(送信イベント名, 送信オブジェクト);
+
+  //   // 個別送信(特定の宛先)
+  //   io.sockets.socket(ソケットID).emit(送信イベント名, 送信オブジェクト);
+
+  //   // 個別送信(送信者宛)
+  //   socket.emit(送信イベント名, 送信オブジェクト);
+  //   io.sockets.socket(socket.id).emit(送信イベント名, 送信オブジェクト);
+
+  //   // つまり、以下の二つは同じ
+  //   // io.sockets.socket(socket.id)
+  //   // socket
   // });
   socket.on("subject",(subject_id) => {
     DB.query('select * from que where subject_id = ' + subject_id + ';', function (err, results, fields) {
@@ -98,4 +127,61 @@ io.sockets.on('connection', (socket) => {
   //     }
   //   );
   // });
+
+  // 画面22番の確認ボタン（SELECT句を必要に応じて書き換えてください）
+  // socket.on('confirm_btn', (data) => {
+  // 生徒がスコアボードを確認したことが通知された
+  // JSONの処理
+  // io.sockets.emit('', );
+  // });
+
+  // ちょっと待ったボタン
+    socket.on('confirm_btn', (data) => {
+      // ちょっと待った時の処理
+    });
 });
+
+// toppageのログイン処理
+function login(req, res) {
+  let form = req.body;
+
+  if (form.id == '' || form.password == '') {
+    res.render(CLIENT_ROOT + "/toppage.ejs");
+  } else {
+    let sql = "SELECT * FROM User WHERE login = " + form.id;
+    connection.query(sql, (err, results) => {
+      // パスワード認証
+      if (!err && results[0].password == crypto.createHash('sha256').update(form.password).digest('hex')) {
+        // 教員生徒 分別画面遷移
+        if (results[0].exp == -1) {
+          // 教員ログイン
+          console.log("教員ログイン: " + results[0].name);
+          const loginId = form.id;
+          res.render(CLIENT_ROOT + "/t_master.ejs");
+        } else {
+          // 生徒ログイン
+          console.log("生徒ログイン: " + results[0].name);
+          const loginId = form.id;
+          const userName = results[0].name;
+          const lv = Math.floor(results[0].exp / 10);
+          res.render(CLIENT_ROOT + "/s_master.ejs");
+        }
+      } else {
+        // 失敗
+        console.log('ログイン失敗');
+        res.render(CLIENT_ROOT + "/toppage.ejs");
+      }
+    });
+  }
+}
+
+function setUserInfo(socket){
+  console.log("ソケットID: " + socket.id);
+  let tempUser = state.user.tempStudents;
+  tempUser.socketId = socket.id;
+}
+
+// // テスト中処理
+// function test(){
+
+// }

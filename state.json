@@ -1,0 +1,45 @@
+{
+  "user": {
+    "teachers": [],
+    "tempTeachers": {
+      "id": "",
+      "name": "",
+      "socketId": ""
+    },
+    "students": [],
+    "tempStudents": {
+      "id": "",
+      "name": "",
+      "exp": "",
+      "socketId": ""
+    }
+  },
+  "test": {
+    "time": "300",
+    "ques": [],
+    "tempQues": {
+      "que_id": "",
+      "focus": "",
+      "question": "",
+      "answer_id": "",
+      "answer": "",
+      "choices": [],
+      "tempChoices": {
+        "id": "",
+        "answer": ""
+      },
+      "comment": "",
+      "subject_id": ""
+    },
+    "students": [],
+    "tempStudents": {
+      "id": "",
+      "progress": [],
+      "tempProgress": {
+        "que_id": "",
+        "answer_id": ""
+      },
+      "check": "n"
+    }
+  }
+}

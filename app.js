@@ -139,8 +139,10 @@ function login(req, res) {
   } else {
     let sql = "SELECT * FROM User WHERE login = " + form.id;
     DB.query(sql, (err, results) => {
+      console.log('err' + err);
+      console.log('results' + results);
       // パスワード認証
-      if (!err && results[0].password == crypto.createHash('sha256').update(form.password).digest('hex')) {
+      if (!err && results[0] && results[0].password == crypto.createHash('sha256').update(form.password).digest('hex')) {
         // 教員生徒 分別画面遷移
         if (results[0].exp == -1) {
           // 教員ログイン

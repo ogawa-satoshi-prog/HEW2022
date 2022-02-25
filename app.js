@@ -10,12 +10,13 @@ const server = http.Server(app);
 const CLIENT_ROOT = __dirname + '/client';
 const PORT = 3000;
 
-const DB = {
+const DB = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'quest_meeting'
-};
+  database: 'quest_meeting',
+  multipleStatements: true //★複数クエリの実行を許可する
+});
 
 
 // データベース接続
@@ -36,8 +37,9 @@ app
       if (err){
           throw err; 
       } 
-      let categorys = results[0];
-      res.render(CLIENT_ROOT + 't_master.ejs', { categorys: categorys })
+      let categorys = results;
+      console.log(categorys);
+      res.render(CLIENT_ROOT + '/t_master.ejs', { categorys: categorys })
     });
   })
   .use(express.static('client'));
@@ -56,6 +58,16 @@ io.sockets.on('connection', (socket) => {
   //   // 送信処理例
   //   io.sockets.emit(送信イベント名, 送信オブジェクト);
   // });
+  socket.on("subject",(subject_id) => {
+    DB.query('select * from que where subject_id = ' + subject_id + ';', function (err, results, fields) {
+      if (err){
+          throw err; 
+      } 
+      let ques = results;
+      console.log(ques);
+      socket.emit("question", ques);
+    });
+  });
 
   // // 出題設定（問題選択）
   // socket.on('next', (data) => {

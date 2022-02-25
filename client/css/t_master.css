@@ -1,0 +1,19 @@
+#checkbox_area tr td:nth-of-type(1) {
+  display: flex;
+  align-items: center;
+}
+
+#checkbox_area tr td:nth-of-type(2) {
+  margin-left: 10px;
+  color: blue;
+  cursor: pointer;
+}
+
+#checkbox_area tr td:nth-of-type(2):hover {
+  color: #3434ff;
+}
+
+#modal2, #modal3, #modal4 {
+  display: none;
+}
+/*# sourceMappingURL=t_master.css.map */

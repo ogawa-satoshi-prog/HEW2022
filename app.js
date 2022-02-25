@@ -54,14 +54,16 @@ const socketio = require('socket.io');
 let io = socketio(server);
 
 // 1.アクセスされ、ソケット通信のコネクションが確立された時
-let arr = [];
 io.sockets.on('connection', (socket) => {
-  arr.push(socket.id);
-  console.log('connection');
-  console.log(arr);
-
+  console.log('connection: ' + socket.id);
   // ソケットIDを保存
 
+  socket.on('send_id', (loginId) => {
+    console.log('on(send_id): ' + loginId);
+    let student = state.user.students.find((st) => st.id == loginId);
+    student.socketId = socket.id;
+    console.log(state);
+  });
 
   // 以下の形で受信イベントを登録する
   // socket.on(受信イベント名, (data)=>{
@@ -124,9 +126,9 @@ io.sockets.on('connection', (socket) => {
   // });
 
   // ちょっと待ったボタン
-    socket.on('confirm_btn', (data) => {
-      // ちょっと待った時の処理
-    });
+  socket.on('confirm_btn', (data) => {
+    // ちょっと待った時の処理
+  });
 });
 
 // toppageのログイン処理
@@ -145,14 +147,21 @@ function login(req, res) {
           // 教員ログイン
           console.log("教員ログイン: " + results[0].name);
           const loginId = form.id;
-          res.render(CLIENT_ROOT + "/t_master.ejs");
+          res.render(CLIENT_ROOT + "/t_master.ejs", {
+            loginId: loginId
+          });
         } else {
           // 生徒ログイン
-          console.log("生徒ログイン: " + results[0].name);
           const loginId = form.id;
           const userName = results[0].name;
           const lv = Math.floor(results[0].exp / 10);
-          res.render(CLIENT_ROOT + "/s_master.ejs");
+          setStudent({ id: form.id, name: results[0].name, exp: results[0].exp });
+          res.render(CLIENT_ROOT + "/s_master.ejs", {
+            loginId: loginId,
+            userName = results[0].name,
+            lv = Math.floor(results[0].exp / 10)
+          });
+          console.log("生徒ログイン: " + results[0].name);
         }
       } else {
         // 失敗
@@ -163,13 +172,9 @@ function login(req, res) {
   }
 }
 
-function setUserInfo(socket){
-  console.log("ソケットID: " + socket.id);
-  let tempUser = state.user.tempStudents;
-  tempUser.socketId = socket.id;
+// stateにuser登録
+function setStudent(obj) {
+  let st = Object.assign({}, state.user.tempStudents);
+  Object.assign(st, obj); // 上書き
+  state.user.students.push(st); // 配列に追加
 }
-
-// // テスト中処理
-// function test(){
-
-// }

@@ -50,6 +50,7 @@ app
 
 // socket通信
 const socketio = require('socket.io');
+const { NULL } = require('mysql/lib/protocol/constants/types');
 let io = socketio(server);
 
 // コネクション確立
@@ -62,7 +63,7 @@ io.sockets.on('connection', (socket) => {
     console.log(`ソケットID登録: ${student.name} ${socket.id}`);
   });
 
-  socket.on('disconnect', (reason)=>{
+  socket.on('disconnect', (reason) => {
     console.log(`ソケット切断: ${socket.id}`);
   });
 
@@ -202,4 +203,113 @@ function setTeacher(obj) {
   let te = Object.assign({}, user.tempTeachers);
   Object.assign(te, obj); // 上書き
   user.students.push(te); // 配列に追加
+}
+
+// Userクラス
+class User {
+  constructor() {
+    this.teachers = [];
+    this.students = [];
+  }
+
+  // 教員追加{id:106, name:'川島'}
+  addTeacher(tcObj) {
+    this.teachers.push(Object.assign({}, tcObj));
+  }
+  // 生徒追加{id:05016, name:'堀之内', exp:10}
+  addStudent(stObj) {
+    this.students.push(Object.assign({}, stObj));
+  }
+
+  // 教員・生徒ソケット追加(05016, ソケットID)
+  setSocket(userId, socketId) {
+    this.teachers.find((tc) => tc.id == userId).socketId = socketId;
+    this.students.find((st) => st.id == userId).socketId = socketId;
+  }
+}
+
+
+// Testクラス
+class Test {
+  constructor() {
+    this.time = 300;
+    this.ques = [];
+    this.students = [];
+    this.tempStudents = {
+      id: '',
+      progress: [],
+      tempProgress: {
+        que_id: '',
+        answer_id: ''
+      },
+      check: 'n'
+    }
+  }
+
+  // タイマー初期設定
+  setTime(sec) {
+    this.time = sec;
+  }
+
+  // タイマーカウンタ(ポーリング処理内で回す)
+  timeCount() {
+    this.time -= 1;
+  }
+
+  // 試験を行う生徒を初期設定(現在接続中の生徒全員)
+  setStudent(students) {
+    let tempSt;
+    students.forEach(st => {
+      tempSt.id = st.id;
+      tempSt.progress = [];
+      tempSt.check = 'n';
+      this.students.push(tempSt);
+    });
+  }
+
+  // 試験を行う生徒を追加(一人ずつ)
+  addStudent(id) {
+    let st;
+    st.id = id;
+    st.progress = [];
+    st.check = 'n';
+    this.students.push(st);
+  }
+
+  // 試験中に学生の回答進捗を追加
+  // 第一引数:学籍番号, 第二引数:{que_id:問題ID, answer_id:回答ID}
+  addProgress(id, obj) {
+    this.students.find((st) => st.id == id).progress.push(obj);
+  }
+
+  // 試験後に確認OKボタンを押下後、確認記録をする
+  setResultCheck(id) {
+    this.students.find((st) => st.id == id).check = 'y';
+  }
+
+  // 試験前に問題を追加
+  // que_idを渡すとtest.quesに問題を追加する
+  addQuestion(queId) {
+    let sql = "SELECT * FROM question WHERE que_id = " + queId;
+    DB.query(sql, (err, results) => {
+      if (err) {
+        return NULL;
+      }
+      let que = results[0];
+      que.choices = [];
+      sql = "SELECT * FROM answer WHERE que_id = " + queId;
+      DB.query(sql, (err, reChoices) => {
+        if (err) {
+          return NULL;
+        }
+        let choice;
+        reChoices.forEach(el => {
+          choice.id = el.que_id;
+          choice.answer = el.choice;
+          que.choices.push(choice);
+        });
+      });
+    });
+    this.ques.push(que);
+  }
 }

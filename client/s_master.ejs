@@ -36,8 +36,47 @@
                 <button class="btn btn-danger" id="btn2">ちょっと待った!</button>
                 <button class="btn btn-danger" id="btn3">試験開始</button>
             </div>
+            <div class="modal_wrapper">
+                <div class="modal_contents">
+                    <div class="modal_close">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <div class="modal_main_contents color_brown">
+    
+                        <div id="left_side">
+                            <div id="question_list">
+                                <p class="quesiton_num">1</p>
+                                <p class="quesiton_num">2</p>
+                                <p class="quesiton_num selected">3</p>
+                                <p class="quesiton_num">4</p>
+                                <p class="quesiton_num">5</p>
+                            </div>
+                            <div id="time_area">
+                                <p id="remind">残り</p>
+                                <p id="time">00:00</p>
+                            </div>
+                        </div>
+    
+                        <div id="right_side">
+                            <div id="question_sentence">
+                                <h2 class="color_brown">Q1</h2><p>私は彼が有名なスター選手であることに気付かなかった</p>
+                            </div>
+                            <p id="question_content">I was not <span class="question_mark"></span> of her being famous movie star.</p>
+                            <form>
+                                <div id="select_answer">
+                                    <input type="radio" id="q1" name="answer" value="q1"><label for="q1">①&nbsp;notice</label>
+                                    <input type="radio" id="q2" name="answer" value="q1"><label for="q2">②&nbsp;know</label>
+                                    <input type="radio" id="q3" name="answer" value="q1"><label for="q3">③&nbsp;aware</label>
+                                    <input type="radio" id="q4" name="answer" value="q1"><label for="q4">④&nbsp;see</label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
 
-            <div id="modal1">
+            <!-- <div id="modal1">
                 <div id="left_side">
                     <div id="question_list">
                         <p class="quesiton_num">1</p>
@@ -67,9 +106,9 @@
                     </form>
                 </div>
                 <button class="btn btn-danger" id="btn4">試験終了</button>
-            </div>
+            </div> -->
 
-            <div id="modal2">
+            <!-- <div id="modal2">
                 <table id="result_table" class="color_brown">
                     <tr class="fixed">
                         <th class="color_brown">設問</th>
@@ -86,9 +125,9 @@
                         <td class="q_your_answer color_brown">①</td>
                         <td class="q_rate color_brown">60%</td>
                         <td class="q_check color_brown"><button class="limegreen_btn">問題を見る</button></td>
-                    </tr>
+                    </tr> -->
                     <!-- ここからはテスト用で増やしたやつ -->
-                    <tr>
+                    <!-- <tr>
                         <th class="q_number color_brown">2</th>
                         <td class="q_result color_brown batu"></td>
                         <td class="q_correct color_brown">②</td>
@@ -122,12 +161,10 @@
                     </tr>
                 </table>
 
-                <button id="confirm" class="white_btn color_brown">確認OK</button>
+                <button id="confirm" class="white_btn color_brown">確認OK</button> -->
 
             </div>
         </main>
-
-        
     <script>
         const loginId = '<%= loginId %>';
         const userName = '<%= userName %>';

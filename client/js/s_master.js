@@ -3,7 +3,7 @@
 $(function () {
   let socket = io.connect();
   socket.emit('send_id', loginId);
-  $('#modal1').hide();
+/*   $('#modal1').hide();
   $('#modal2').hide();
 
   $('#btn3').on('click',function(){
@@ -15,7 +15,44 @@ $(function () {
   });
   $('#confirm').on('click',function(){
     $('#modal2').fadeOut().hide();
-  });
+  }); */
+  question = [
+    {
+      que_id : 1,
+      question : "dogの意味は？",
+      choices : [{id:1,answer:"犬"},{id:2,answer:"猫"},{id:3,answer:"猿"},{id:4,answer:"鳥"}]
+    },
+    {
+      que_id : 3,
+      question : "runの意味は？",
+      choices : [{id:9,answer:"走る"},{id:10,answer:"眠る"},{id:11,answer:"話す"},{id:12,answer:"飛ぶ"}]
+    },
+    {
+      que_id : 5,
+      question : "todayの意味は？",
+      choices : [{id:17,answer:"明日"},{id:18,answer:"今日"},{id:19,answer:"今年"},{id:20,answer:"来年"}]
+    },
+    {
+      que_id : 10,
+      question : "deleteの意味は？",
+      choices : [{id:17,answer:"犬"},{id:18,answer:"猫"},{id:19,answer:"猿"},{id:20,answer:"鳥"}]
+    },
+    {
+      que_id : 11,
+      question : "princeは女性を表す単語である",
+      choices : [{id:21,answer:"〇"},{id:22,answer:"✕"}]
+    },
+    {
+      que_id : 12,
+      question : "becomeは(     )だけ綴りが異なる",
+      choices : [{id:23,answer:"原型"},{id:24,answer:"過去形"},{id:25,answer:"過去分詞形"}]
+    },
+    {
+      que_id : 13,
+      question : "My father is (   )(   )(   ) yours.（私の父はあなたのお父さんと同じくらいの年齢です）",
+      choices : [{id:26,answer:"as old as"},{id:27,answer:"older than"},{id:28,answer:"oldest in"},{id:28,answer:"old by"}]
+    }
+  ];
 });
 
 
@@ -49,7 +86,7 @@ btn2.addEventListener('click', () => {
 }, false);
 */
 // 画面22番「確認するボタン」
-const confirm = document.getElementById('confirm');
+/* const confirm = document.getElementById('confirm');
 confirm.addEventListener('click', () => {
   socket.emit('confirm_btn', ''); // 第２引数を生徒の番号の値に変更する必要なし
-}, false);
+}, false); */

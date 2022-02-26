@@ -29,11 +29,33 @@ class User {
     this.teachers.forEach(tc => {
       if (tc.id == loginId) {
         tc.socketId = socketId;
+        console.log(`${color.blue}接続${color.reset}: ${color.green}${tc.name}${color.reset}`);
+        return;
       }
     });
     this.students.forEach(st => {
       if (st.id == loginId) {
         st.socketId = socketId;
+        console.log(`${color.blue}接続${color.reset}: ${st.name}`);
+        return;
+      }
+    });
+  }
+
+  // ソケット切断時に実行
+  setDisconnect(socketId) {
+    this.teachers.forEach((tc, key) => {
+      if (tc.socketId == socketId) {
+        this.teachers.splice(key, 1);
+        console.log(`${color.yellow}切断${color.reset}: ${color.green}${tc.name}${color.reset}`);
+        return;
+      }
+    });
+    this.students.forEach((st, key) => {
+      if (st.socketId == socketId) {
+        this.students.splice(key, 1);
+        console.log(`${color.yellow}切断${color.reset}: ${st.name}`);
+        return;
       }
     });
   }
@@ -44,6 +66,15 @@ class User {
       return user.teachers.find((tc) => tc.id == loginId);
     } else {
       return user.students.find((st) => st.id == loginId);
+    }
+  }
+
+  // teachers配列の0番目の教師情報をオブジェクトで返す{id:'106', name:'kawashima', socketId:'adasdadfrgsg'}
+  getMasterTeacher() {
+    if (this.teachers[0]) {
+      return this.teachers[0];
+    } else {
+      return null;
     }
   }
 }
@@ -174,17 +205,13 @@ let io = socketio(server);
 
 // コネクション確立
 io.sockets.on('connection', (socket) => {
-  console.log(`ソケット接続: ${socket.id}`);
   // ソケットIDを保存
   socket.on('send_id', (loginId) => {
     user.setSocket(loginId, socket.id);
-    console.log(`ソケットID登録: ${user.getUser(loginId).name} ${socket.id}`);
   });
 
   socket.on('disconnect', (reason) => {
-    console.log(`ソケット切断: ${socket.id}`);
-    console.log(user.students);
-    console.log(user.teachers);
+    user.setDisconnect(socket.id);
   });
 
   // 以下の形で受信イベントを登録する
@@ -266,7 +293,7 @@ io.sockets.on('connection', (socket) => {
   // 先生が試験開始ボタンを押した時の処理
   socket.on('test_start', (data) => {
     // 生徒側に問題と制限時間を送る処理が必要
-    res.render(CLIENT_ROOT + "/s_master.ejs" , '試験に必要な情報');
+    res.render(CLIENT_ROOT + "/s_master.ejs", '試験に必要な情報');
   });
 });
 
@@ -294,7 +321,6 @@ function login(req, res) {
             let categorys = results;
             res.render(CLIENT_ROOT + '/t_master.ejs', { categorys: categorys, loginId: loginId })
           });
-          console.log(`${color.blue}教員ログイン: ${loginId} ${results[0].name}${color.reset}`);
         } else {
           // 生徒ログイン
           const userName = results[0].name;
@@ -306,7 +332,6 @@ function login(req, res) {
             userName: userName,
             lv: lv
           });
-          console.log(`${color.blue}生徒ログイン: ${loginId} ${userName}${color.reset}`);
         }
       } else {
         // 失敗

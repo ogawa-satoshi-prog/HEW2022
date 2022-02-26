@@ -102,16 +102,20 @@ class Test {
     let tempSt;
     students.forEach(st => {
       tempSt.id = st.id;
+      tempSt.name = st.name;
+      tempSt.exp = st.exp;
       tempSt.progress = [];
       tempSt.check = 'n';
       this.students.push(tempSt);
     });
   }
 
-  // 試験を行う生徒を追加(一人ずつ)
-  addStudent(id) {
+  // 試験を行う生徒を追加(一人ずつ){id:05016, name:堀之内, exp:10}
+  addStudent(stObj) {
     let st;
-    st.id = id;
+    st.id = stObj.id;
+    st.name = stObj.name;
+    st.exp = stObj.exp;
     st.progress = [];
     st.check = 'n';
     this.students.push(st);
@@ -170,7 +174,7 @@ const color = {
 // let test = require('./state.json').test;
 
 let user = new User();
-// let test = new Test();
+let test = new Test();
 
 const app = express();
 const server = http.Server(app);
@@ -291,9 +295,21 @@ io.sockets.on('connection', (socket) => {
   });
 
   // 先生が試験開始ボタンを押した時の処理
-  socket.on('test_start', (data) => {
-    // 生徒側に問題と制限時間を送る処理が必要
-    res.render(CLIENT_ROOT + "/s_master.ejs", '試験に必要な情報');
+  socket.on('test_start', (ques) => {
+    // testオブジェクトに問題を設定
+    ques.forEach(queId => {
+      test.addQuestion(queId);
+    });
+    // 生徒をtest.studentsに登録
+    test.setStudent(user.students);
+    // 教師に生徒一覧送信
+    io.sockets.socket(user.getMasterTeacher).emit('test_start', {time:test.time, students: test.students});
+    // 生徒に問題情報を送信
+    user.students.forEach(st => {
+      io.sockets.socket(st.socketId).emit('test_start', {time:test.time, ques:test.ques});
+    });
+
+    // ポーリング処理(必要かわからん)
   });
 });
 

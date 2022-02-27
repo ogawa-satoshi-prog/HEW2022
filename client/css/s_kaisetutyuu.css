@@ -1,0 +1,88 @@
+/* レイアウト */
+#main{
+    position: absolute;
+    bottom: -20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+h2{/* 「先生が解説中です・・・」 */
+    position: absolute;
+    top: 20%;
+    left: 10%;
+}
+#question{/* 問題文 */
+    position: absolute;
+    top: 12%;
+    left: 5%;
+}
+#select{/* 選択肢のところ */
+    position: absolute;
+    top: 25%;
+    left: 0%;
+    display: flex;
+    justify-content: space-evenly;
+}
+#point{/* ポイントのところ */
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#point #point_text{/* 「POINT：ポイント」 */
+    position: absolute;
+    top: -10%;
+    left: 5%;
+}
+#point #explanation{/* ポイント内容 */
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* デザイン */
+#main{
+    width: 80%;
+    height: 60%;
+    border: 2px solid #777;
+}
+#question{/* 問題文 */
+    font-size: x-large;
+    font-weight: 1000;
+}
+#question span{/* Qのところ */
+    padding: 0 3rem;
+}
+#select{/* 選択肢のところ */
+    width: 100%;
+}
+#select p{/* 選択肢文 */
+    padding: 0.5rem;
+    font-size: x-large;
+    font-weight: 1000;
+}
+#point{/* ポイントのところ */
+    width: 80%;
+    height: 30%;
+    border-top: 3px solid rgb(92,143,224);
+    border-bottom: 3px solid rgb(92,143,224);
+}
+#point #point_text{/* 「POINT：ポイント」 */
+    background-color: #FFF;
+    padding: 0 1.5rem;
+    font-size: x-large;
+    font-weight: 1000;
+}
+#point span{/* 「POINT：」のところ */
+    color: rgb(92,143,224);
+}
+#point #explanation{/* ポイント内容 */
+    width: 90%;
+    font-size: large;
+    font-weight: 800;
+}
+
+/* 答えにつけるクラス */
+.answer{
+    border: 2px red solid;
+}

@@ -1,0 +1,75 @@
+@charset "utf-8";
+*{
+  margin: 0px;
+  padding: 0px;
+  margin: 0 auto;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+#header_s{
+  width: 100%;
+  height: 11%;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  font-size: 28px;
+  align-items: center;
+}
+#header_t{
+  width: 100%;
+  height: 11%;
+  background-color: #073D4E;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 5;
+  align-items: center;
+}
+
+/** header_sの中身 **/
+#header_s .title{
+  margin-left: 30px;
+  width: 30%;
+  letter-spacing: 1px;
+  font-size: 30px;
+  font-weight: 700;
+}
+#header_s .user_head{
+  width: 35%;
+  display: flex;
+  /* justify-content: space-around; */
+  font-weight: 600;
+}
+#header_s .img_avatar{
+  width: 60px;
+  background-color: rgb(157, 157, 157);
+}
+#header_s .color_blue{
+  display: block;
+}
+#header_s .lv_p{
+  width: 140px;
+}
+#header_s .name_p{
+  width: 250px;
+  text-align: center;
+}
+#header_s .fake{
+  width: 30%;
+  height: 100%;
+}
+
+/** header_tの中身 **/
+#header_t .title{
+  margin-left: 30px;
+  color: white;
+  letter-spacing: 1px;
+  font-size: 30px;
+  font-weight: 700;
+}

@@ -4,6 +4,7 @@
   margin: 0px;
   padding: 0px;
   margin: 0 auto;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 /***************************************************/
 /******************** font_color ********************/
@@ -11,6 +12,9 @@
 .color_brown{
   color:#46380D;
   font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+.color_white{
+  color: white;
 }
 
 .title{
@@ -130,7 +134,142 @@ select::-ms-expand {
   height: 53px;
   background-color: #FFDD38;
   border: none;
+  border-radius: 12px;
+  font-size: 25px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 53px;
+}
+.yellow_btn:hover{
+  background-color: #DDBB22;
+}
+
+/****************************************************/
+/********************* lightgray_btn *******************/
+/****************************************************/
+.lightgray_btn{
+  width: 180px;
+  height: 53px;
+  background-color: #DDD;
+  border: none;
   border-radius: 15px;
   font-size: 25px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 53px;
+}
+.lightgray_btn:hover{
+  background-color: #BBB;
+}
+
+/****************************************************/
+/********************* white_btn *******************/
+/****************************************************/
+.white_btn{
+  width: 240px;
+  height: 65px;
+  background-color: #FFF;
+  border: 5px solid #FFDD38;
+  border-radius: 5px;
+  font-size: 25px;
+  font-weight: 800;
+  text-align: center;
+  line-height: 65px;
+}
+.white_btn:hover{
+  background-color: #FFDD38;
+}
+
+/****************************************************/
+/********************* green_btn *******************/
+/****************************************************/
+.green_btn{
+  width: 150px;
+  height: 77px;
+  color: #FFF;
+  background-color: rgb(0,166,69);
+  border: none;
+  border-radius: none;
+  font-size: 25px;
+  font-weight: 800;
+  text-align: center;
+  line-height: 77px;
+}
+.green_btn:hover{
+  background-color: rgb(0, 134, 56);
+}
+
+/****************************************************/
+/********************* limegreen_btn *******************/
+/****************************************************/
+.limegreen_btn{
+  width: 180px;
+  height: 53px;
+  color: #FFF;
+  background-color: rgb(87,188,55);
+  border: none;
+  border-radius: none;
+  font-size: 25px;
   font-weight: 100;
+  text-align: center;
+  line-height: 53px;
+}
+.limegreen_btn:hover{
+  background-color: rgb(60, 160, 30);
+}
+
+/****************************************************/
+/********************* brown_btn *******************/
+/****************************************************/
+.brown_btn{
+  width: 180px;
+  height: 55px;
+  color: #FFF;
+  background-color: rgb(86,72,26);
+  border: none;
+  border-radius: 7px;
+  font-size: 25px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 55px;
+}
+
+/****************************************************/
+/********************* red_btn *******************/
+/****************************************************/
+.red_btn{
+  width: 180px;
+  height: 55px;
+  color: #FFF;
+  background-color: rgb(239,95,95);
+  border: none;
+  border-radius: 5px;
+  font-size: 25px;
+  font-weight: 800;
+  text-align: center;
+  line-height: 55px;
+}
+.red_btn:hover{
+  background-color: rgb(207, 42, 42); 
+  color: #FEE;
+}
+
+/****************************************************/
+/********************* gray_btn *******************/
+/****************************************************/
+.gray_btn{
+  width: 180px;
+  height: 55px;
+  color: #FFF;
+  background-color: #666;
+  border: none;
+  border-radius: 5px;
+  font-size: 25px;
+  font-weight: 800;
+  text-align: center;
+  line-height: 55px;
+}
+.gray_btn:hover{
+  background-color: #444;
+  color: #EEE;
 }

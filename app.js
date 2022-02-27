@@ -3,6 +3,7 @@ const express = require('express');
 // const fs = require("fs");
 // const ejs = require("ejs");
 const mysql = require('mysql');
+const util = require('util');
 const crypto = require('crypto');
 const bodyParser = require('body-parser');
 
@@ -147,7 +148,7 @@ class Test {
         if (err) {
           return NULL;
         }
-        let choice;
+        let choice = {};
         reChoices.forEach(el => {
           choice.id = el.que_id;
           choice.answer = el.choice;
@@ -155,9 +156,9 @@ class Test {
         });
       });
     });
-    this.ques.push(que);
   }
 }
+
 
 const color = {
   red: '\u001b[31m',
@@ -173,8 +174,7 @@ const color = {
 // let user = require('./state.json').user;
 // let test = require('./state.json').test;
 
-let user = new User();
-let test = new Test();
+
 
 const app = express();
 const server = http.Server(app);
@@ -188,6 +188,11 @@ const DB = mysql.createConnection({
   database: 'quest_meeting',
   multipleStatements: true //★複数クエリの実行を許可する
 });
+
+DB.query = util.promisify(DB.query);
+
+let user = new User();
+let test = new Test();
 
 server.listen(PORT);
 console.log('http://localhost:3000');
@@ -204,6 +209,7 @@ app
 
 // socket通信
 const socketio = require('socket.io');
+const { resolve } = require('path');
 // const { NULL } = require('mysql/lib/protocol/constants/types');
 let io = socketio(server);
 
@@ -230,14 +236,14 @@ io.sockets.on('connection', (socket) => {
   //   socket.broadcast.emit(送信イベント名, 送信オブジェクト);
 
   //   // 個別送信(特定の宛先)
-  //   io.sockets.socket(ソケットID).emit(送信イベント名, 送信オブジェクト);
+  //   socket.to(ソケットID).emit(送信イベント名, 送信オブジェクト);
 
   //   // 個別送信(送信者宛)
   //   socket.emit(送信イベント名, 送信オブジェクト);
-  //   io.sockets.socket(socket.id).emit(送信イベント名, 送信オブジェクト);
+  //   socket.to(socket.id).emit(送信イベント名, 送信オブジェクト);
 
   //   // つまり、以下の二つは同じ
-  //   // io.sockets.socket(socket.id)
+  //   // socket.to(socket.id)
   //   // socket
   // });
   socket.on("subject", (subject_id) => {
@@ -296,6 +302,7 @@ io.sockets.on('connection', (socket) => {
 
   // 先生が試験開始ボタンを押した時の処理
   socket.on('test_start', (ques) => {
+
     // testオブジェクトに問題を設定
     ques.forEach(queId => {
       test.addQuestion(queId);
@@ -303,13 +310,20 @@ io.sockets.on('connection', (socket) => {
     // 生徒をtest.studentsに登録
     test.setStudent(user.students);
     // 教師に生徒一覧送信
-    io.sockets.socket(user.getMasterTeacher).emit('test_start', {time:test.time, students: test.students});
+    socket.to(user.getMasterTeacher).emit('test_start', { time: test.time, students: test.students });
     // 生徒に問題情報を送信
     user.students.forEach(st => {
-      io.sockets.socket(st.socketId).emit('test_start', {time:test.time, ques:test.ques});
+      socket.to(st.socketId).emit('test_start', { time: test.time, ques: test.ques });
     });
 
-    // ポーリング処理(必要かわからん)
+    console.log(`${color.cyan}試験が開始されました${color.reset}`);
+
+    // 試験終了時処理
+    setTimeout(() => {
+      console.log(`${color.cyan}試験が終了しました${color.reset}`);
+
+      // 教師に終了情報を送信
+    }, test.time * 1000);
   });
 });
 

@@ -1,0 +1,123 @@
+/* レイアウト */
+#question_check{/* 右側 */
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+#question_check #question_sentence h2{/* 問題概要のところ */
+    position: absolute;
+    top: 10%;
+    left: 0%;
+}
+#question_check #question_content{/* 問題内容 */
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#question_check #select_answer{/* 答え選択のところ */
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+#close_btn{/* 閉じるボタン */
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+#expl{/* 解説ボタン */
+    position: absolute;
+    bottom: 0%;
+    left: 60%;
+}
+
+
+/* デザイン */
+#question_check{
+    width: 80%;
+    height: 80%;
+}
+#question_check #question_sentence{
+    font-size: x-large;
+    font-weight: 1000;
+    line-height: 40px;
+}
+#question_check #question_content{/* 問題内容 */
+    font-size: x-large;
+    font-weight: 1000;
+    width: 80%;
+    line-height: 40px;
+}
+#question_check #question_sentence h2{/* 問題概要のところ */
+    font-size: xx-large;
+}
+#question_check #select_answer{/* 答え選択のところ */
+    width: 80%;
+    height: 35%;
+    border: 2px solid #777;
+    box-sizing: content-box;
+}
+#question_check #select_answer label{/* 選択肢の文章 */
+    width: 40%;
+    font-size: x-large;
+    text-align: center;
+    font-size: x-large;
+    font-weight: 1000;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    cursor: default;
+}
+input[type=radio]{/* ラジオボタン */
+    display: none;
+    cursor: default;
+}
+#close_btn{/* 閉じるボタン */
+    width: 30%;
+    text-align: center;
+    padding-left: 1.5rem;
+}
+#close_btn::after{/* 閉じるボタンの×の部分 */
+    content: "×";
+    position: absolute;
+    display: block;
+    top: 25%;
+    left: 15%;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    color: rgb(239,95,95);
+    background: #FFF;
+    border-radius: 50%;
+    text-align: center;
+    font-weight: 1100;
+}
+#expl{/* 解説ボタン */
+    width: 30%;
+    text-align: center;
+    font-weight: 800;
+    border-radius: 5px;
+}
+
+
+/* 問題文の ？四角 の部分につけるクラス */
+.question_mark{
+    border: 2px solid #777;
+    color: rgb(229,60,9);
+    font-size: x-large;
+    font-weight: 1000;
+}
+.question_mark::after{
+    content: "?";
+    padding: 0.1rem 3rem;
+}
+/* 答えの選択肢につけるクラス */
+.question_answer{
+    outline: 2px solid rgb(87,189,55);
+}

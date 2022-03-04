@@ -3,6 +3,9 @@ $(function () {
     console.log(socket);
 
     socket.emit('send_id', loginId);
+    $('#modal5').fadeOut(500).hide();
+    $('#modal6').fadeOut(500).hide();
+    $('#modal7').fadeOut(500).hide();
 
     $('#btn1').click(function () {
         socket.emit("subject", $('select[name="subject"]').val());
@@ -96,6 +99,20 @@ $(function () {
             send_data.push(selected_questions[i].id);
         }
         socket.emit("test_start", send_data);
+        $('#modal4').fadeOut(500).hide();
+        $('#modal5').fadeIn(500);
+        
+        socket.on('test_start', (data) => {
+            console.log(data);
+        });
+            
+
+
+        // ここに表示される処理
+
+
+
+
     });
 
     $('#btn5').click(function(){
@@ -107,6 +124,26 @@ $(function () {
         $('#modal2').fadeOut(500).hide();
         $('#modal1').fadeIn(500);
     });
+
+
+    // 一時停止の処理をここに書く
+    $('#btn7').click(function(){
+        // 一時停止の時の処理
+        // socket.emit("test_start", send_data);
+    });
+    // 中断の処理をここに書く
+    $('#btn8').click(function(){
+        // タイマーが切れたことをサーバー側に知らせる処
+        socket.emit("test_stop", 0);
+        $('#modal5').fadeOut(500).hide();
+        $('#modal6').fadeIn(500);
+        
+    });
+
+
+
+
+
 });
 
 /*

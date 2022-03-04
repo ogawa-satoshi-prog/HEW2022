@@ -1,0 +1,73 @@
+@charset "utf-8";
+
+/* レイアウト */
+main{/* 背景 */
+    position: relative;
+}
+#image{/* 「ちょっとまった」ボタン */
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#image_little_under{
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#section{/* 画面下らへんのところ */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    bottom: -83%;
+}
+
+
+/* デザイン */
+main{/* 背景 */
+    width: 100%;
+    height: 100%;
+    background: rgb(95,210,239);
+}
+#image{/* 「ちょっとまった」ボタン */
+    box-shadow: 0px 2px 6px rgb(45,160,189);
+    width: 500px;
+    height: 460px;
+    margin: 0 auto;
+}
+#section{/* 画面下らへんのところ */
+    width: 73%;
+    height: 10%;
+    margin: 0 auto;
+}
+#section .color_brown{/* 「現在試験中です」 */
+    display: block;
+    width: 40%;
+    height: 100%;
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 71px;
+
+}
+#section #timer_area{/* タイマーのところ */
+    display: block;
+    width: 30%;
+    height: 100%;
+    line-height: 71px;
+    font-size: 3rem;
+    font-weight: 800;
+
+}
+#section #timer_area #timer{/* 残り時間表示のところ */
+    color: rgb(229,60,9);
+    padding-left: 1rem;
+    text-align: center;
+}
+#section .green_btn{/* 「試験を解く」 */
+    width: 200px;
+    height: 100px;
+    text-align: center;
+    font-size: 2rem;
+}

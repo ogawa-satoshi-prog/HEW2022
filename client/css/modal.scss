@@ -1,3 +1,20 @@
+main{
+    background-color: #20CBF0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+#icon_box{
+    max-width: 1076px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .modal_wrapper{
     width: 100vw;
     height: 100vh;
@@ -5,7 +22,7 @@
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.8);
-    position: fixed;
+    //position: fixed;
     top: 0;
     left: 0;
     z-index: 10;
@@ -35,8 +52,312 @@
         .modal_main_contents{
             width: 747px;
             height: 100%;
-            padding: 40px 0;
+            padding: 50px 0;
             margin: 0 auto;
+        }
+        #select_subject_1{
+            width: 700px;
+            .grid{
+                width: 100%;
+                height: 100%;
+                display: grid;
+                grid-template-rows: 40px 36px 30px 74px 1fr 70px 30px;
+                grid-template-columns:1fr 136px 136px 136px 136px 1fr;
+                grid-template-areas: 
+                    "... ... ... ... ... ..."
+                    "title title title title title title"
+                    "... ... ... ... ... ..."
+                    "select select select select select select"
+                    "... ... ... ... ... ..."
+                    "... ... button button ... ..."
+                    "... ... ... ... ... ..."
+                ;
+                h2{
+                    grid-area: title;
+                    height: 100%;
+                    margin: 0 10px;
+                }
+                div{
+                    grid-area: select;
+                    width: 100%;
+                    height: 100%;
+                    position: relative;
+                    .select_box{
+                        width: 100%;
+                        margin: 0 auto;
+                        font-weight: 500;
+                    }
+                    svg{
+                        display: block;
+                        position: absolute;
+                        top: 6px;
+                        right: 30px;
+                    }
+                }
+                button{
+                    grid-area: button;
+                    width: 257px;
+                    height: 100%;
+                    margin: 0 auto;
+                    text-align: center;
+                    font-weight: 500;
+                }
+            }
+        }
+        #select_subject_2{
+            width: 700px;
+            .grid{
+                width: 100%;
+                height: 100%;
+                display: grid;
+                grid-template-rows: 40px 36px 30px 74px 1fr 70px 30px;
+                grid-template-columns:1fr 136px 136px 136px 136px 1fr;
+                grid-template-areas: 
+                    "... ... ... ... ... ..."
+                    "title title title title title title"
+                    "... ... ... ... ... ..."
+                    "select select select select select select"
+                    "... ... ... ... ... ..."
+                    "... back_btn back_btn next_btn next_btn ..."
+                    "... ... ... ... ... ..."
+                    ;
+                    h2{
+                        grid-area: title;
+                        height: 100%;
+                        margin: 0 10px;
+                    }
+                    div{
+                        grid-area: select;
+                        width: 100%;
+                        height: 100%;
+                        position: relative;
+                        .select_box{
+                            margin: 0 auto;
+                            font-weight: 500;
+                            width: 100%;
+                        }
+                        svg{
+                            display: block;
+                            position: absolute;
+                            top: 6px;
+                            right: 30px;
+                        }
+                    }
+                .lightgray_btn{
+                    grid-area: back_btn;
+                    width: 257px;
+                    height: 100%;
+                    margin-left: 0;
+                    text-align: center;
+                    font-weight: 500;
+                }
+                .yellow_btn{
+                    grid-area: next_btn;
+                    width: 257px;
+                    height: 100%;
+                    margin: 0 0 0 auto;
+                    text-align: center;
+                    font-weight: 500;
+                }
+            }
+        }
+        #set_question_1{
+            width: 700px;
+            .grid{
+                width: 100%;
+                height: 100%;
+                display: grid;
+                grid-template-rows: 40px 36px 50px 104px 40px 104px 30px 50px 1fr 70px 30px;
+                grid-template-columns:1fr 136px 136px 136px 136px 1fr;
+                grid-template-areas: 
+                    "... ... ... ... ... ..."
+                    "title title title title title title"
+                    "... ... ... ... ... ..."
+                    "num_q num_q num_q num_q num_q num_q"
+                    "... ... ... ... ... ..."
+                    "limit_time limit_time limit_time limit_time limit_time limit_time"
+                    "... ... ... ... ... ..."
+                    "check check check check check check"
+                    "... ... ... ... ... ..."
+                    "... back_btn back_btn next_btn next_btn ..."
+                    "... ... ... ... ... ..."
+                    ;
+                h2{
+                    grid-area: title;
+                    height: 100%;
+                    margin: 0 10px;
+                }
+                dl{
+                    width: 100%;
+                    font-size: 22px;
+                    dt{
+                        font-weight: 700;
+                    }
+                    dd{
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: flex-end;
+                        margin-top: 5px;
+                        .input{
+                            width: 95%;
+                            height: 74px;
+                        }
+                        span{
+                            font-size: 25px;
+                            display: block;
+                            //width: 30px;
+                            margin-bottom: 10px;
+                        }
+                    }
+                }
+                dl:first-of-type{
+                    grid-area: num_q;
+                    width: 100%;
+                    height: 100%;    
+                }
+                dl:last-of-type{
+                    grid-area: limit_time;
+                    height: 100%;
+                }
+                .check_wrap{
+                    grid-area: check;
+                    &>.my_checkbox{
+                        width: 100%;
+                        .checkmark::after{
+                            //なぜか言うことを聞かないチェックマーク
+                            top: -2px;
+                            left: 5px;
+                        }
+                        .check_font{
+                            font-weight: 500;
+                        }
+                    }
+                }
+                .lightgray_btn{
+                    grid-area: back_btn;
+                    width: 257px;
+                    height: 100%;
+                    margin-left: 0;
+                    text-align: center;
+                    font-weight: 500;
+                }
+                .yellow_btn{
+                    grid-area: next_btn;
+                    width: 257px;
+                    height: 100%;
+                    margin: 0 0 0 auto;
+                    text-align: center;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+}
+
+#set_question_2{
+    h2{
+        margin-top: 40px;
+    }
+    .my_checkbox{
+        margin: 0;
+        height: 44px;
+        .checkmark{
+            top: 30%;
+        }
+    }
+    .check_font{
+        text-align: left;
+        max-width: 300px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 16px;
+        min-width: 300px;
+        //overflow-wrap: break-word;
+        //font-weight: 500;
+    }
+    .scroll_box{
+        /* background-color: red; */
+        margin-top: 50px;
+        margin-bottom: 50px;
+        width: 100%;
+        height: 450px;
+        /* padding: 70px; */
+        border-radius: 13px;
+        box-shadow: 0 0 8px rgb(200, 200, 200);
+        overflow-y: scroll;
+        border: solid 60px white;
+        box-shadow: 0 0 8px rgb(200, 200, 200),
+        0px 0px 30px rgb(255, 255, 255) inset,
+        10px 10px 30px rgb(255, 255, 255) inset;
+      }
+      /* スクロールバーの太さ */
+      .scroll_box::-webkit-scrollbar {
+        width: 20px;
+      }
+      /* スクロールバーの後ろ部分 */
+      .scroll_box::-webkit-scrollbar-track {
+        box-shadow:0 0 5px #bbbbbb inset ;
+        border-radius: 10px;
+      }
+      /* スクロールバーのつまみ */
+      .scroll_box::-webkit-scrollbar-thumb {
+        background: #808080;
+        border-radius: 10px;
+      }
+      #table2{
+        width: 100%;
+        height: 100%;
+        /* box-shadow: -10px -10px 10px rgba(255, 255, 255, 0.917) inset,
+        10px 10px 10px rgba(255, 255, 255, 0.91) inset; */
+        z-index: 1;
+      }
+      .row{
+        display: flex;
+        width: 90%;
+        height: 70px;
+        box-sizing: border-box;
+        opacity: 0.9;
+        padding-top: 8px;
+        border-bottom: solid 1px #46380D;
+      }
+      .row:last-of-type{
+          border: none;
+      }
+      .cell_num{
+        font-size: 25px;
+        font-weight: 800;
+        text-align: center;
+        line-height: 55px;
+      }
+    .limegreen_btn{
+        font-size: 20px;
+        width: 150px;
+        font-weight: 500;
+    }
+    .btn_wrap{
+        display: grid;
+        grid-template-rows: 70px 30px;
+        grid-template-columns:1fr 136px 136px 136px 136px 1fr;
+        grid-template-areas: 
+            "... back_btn back_btn next_btn next_btn ..."
+            "... ... ... ... ... ...";
+        .lightgray_btn{
+            grid-area: back_btn;
+            width: 257px;
+            height: 100%;
+            margin-left: 0;
+            text-align: center;
+            font-weight: 500;
+        }
+        .yellow_btn{
+            grid-area: next_btn;
+            width: 257px;
+            height: 100%;
+            margin: 0 0 0 auto;
+            text-align: center;
+            font-weight: 500;
         }
     }
 }

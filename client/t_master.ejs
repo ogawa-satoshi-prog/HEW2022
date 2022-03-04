@@ -85,6 +85,24 @@
 			<button type="button" class="btn btn-success mt-5" id="btn4">試験開始</button>
 		</div>
 
+		<div class="w-50" style="margin:0 auto" id="modal5">
+			<p>試験中</p>
+			<table id="test_live"></table>
+			<button type="button" class="btn btn-secondary mt-5" id="btn7">中断</button>
+			<button type="button" class="btn btn-success mt-5" id="btn8">一時停止</button>
+		</div>
+
+		<div class="w-50" style="margin:0 auto" id="modal6">
+			<p>試験終了</p>
+			<table id="test_confirm"></table>
+			<button type="button" class="btn btn-secondary mt-5" id="btn9">解説画面へ</button>
+		</div>
+
+		<div class="w-50" style="margin:0 auto" id="modal7">
+			<p>試験終了</p>
+			<div id="comment_info"></div>
+			<button type="button" class="btn btn-secondary mt-5" id="btn10">試験を終了</button>
+		</div>
 	</main>
 	<script>
 		const loginId = '<%= loginId %>';

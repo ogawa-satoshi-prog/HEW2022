@@ -1,0 +1,137 @@
+/* レイアウト */
+/* 画面上部 ユーザ情報 */
+#status{
+    position: absolute;
+    top: 7.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#status #character{/* キャラクター画像 */
+    position: absolute;
+    top: 0%;
+    left: 5%;
+}
+#status #name{/* ユーザ名 */
+    position: absolute;
+    top: 0%;
+    left: 20%;
+}
+#status #exp{/* 経験値バー */
+    position: absolute;
+    top: 0%;
+    left: 40%;
+}
+#status #level{/* レベル（画像?） */
+    position: absolute;
+    top: 0%;
+    left: 80%;
+}
+/* 結果一覧テーブル */
+#result_table{
+    position: absolute;
+    top: 17.5%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+/* 「確認OK」ボタン */
+#confirm{
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+/* デザイン */
+/* 画面上部 ユーザ情報 */
+#status{
+    width: 90%;
+    font-size: x-large;
+    font-weight: 800;
+}
+#status #exp{/* 経験値バー */
+    width: 30%;
+    height: 20%;
+    border: 2px solid #AAA;
+    border-radius: 15px;
+    padding: 0.5rem;
+}
+#status #level{/* レベル（画像?） */
+
+}
+/* 結果一覧テーブル */
+#result_table{
+    width: 75%;
+    height: 60%;
+    font-size: larger;
+    font-weight: 1200;
+    text-align: center;
+    display: block;/* ここの2行でテーブルをスクロールできるようにしている */
+    overflow-y: scroll;
+}
+/* スクロールの幅の設定 */
+#result_table::-webkit-scrollbar {
+    width: 20px;
+    height: 20px;
+}
+  /* スクロールの背景の設定 */
+#result_table::-webkit-scrollbar-track {
+    border-radius: 20px;
+    box-shadow: 0 0 6px #aaa inset;
+}
+  /* スクロールのつまみ部分の設定 */
+#result_table::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background: #555;
+}
+.fixed th{/* 一番上のセルを固定するため */
+    position: sticky;
+    top: 0;
+    background: #FEFEFE;
+}
+.fixed th::before{/* 一番上のセルを固定するため２ */
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ccc;
+}
+#result_table th, #result_table td{/* セル内のデザイン */
+    border-collapse: collapse;
+    border:1.5px solid #777;
+    font-size: x-large;
+    font-weight: 1200;
+    text-align: center;
+    height: 20px;
+    padding: 0.5rem 1rem;
+    line-height: normal;
+    vertical-align: middle;
+}
+#result_table th{
+    padding: 1rem 1rem;
+}
+
+#result_table .maru::after{/* 採点結果◯の場合(.maru) */
+    content: "◯";
+    color: rgb(229,60,9);
+    font-size: 2rem;
+    font-weight: 800;
+}
+#result_table .batu::after{/* 採点結果×の場合(.batu) */
+    display: block;
+    content: "×";
+    color: rgb(92,143,224);
+    font-size: 2.5rem;
+    font-weight: 400;
+}
+/* 「確認OK」ボタン */
+#confirm{
+    text-align: center;
+    line-height: 0;
+}
+.limegreen_btn{
+    font-weight: 800;
+}

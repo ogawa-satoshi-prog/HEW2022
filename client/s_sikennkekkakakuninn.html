@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>QuestMeeting</title>
+        <meta content="タイトル" name="title">
+        <meta content="ディスクリプション" name="description">
+        <meta content="キーワード" name="keywords">
+        <link href="./css/destyle.css" rel="stylesheet">
+        <link href="./css/modal.css" rel="stylesheet">
+        <link href="./css/common.css" rel="stylesheet">
+        <link href="./css/parts.css" rel="stylesheet">
+        <link href="./css/s_sikennkekkakakuninn.css" rel="stylesheet">
+        <!-- フォントの初期設定 -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&family=New+Tegomin&family=Noto+Sans+JP:wght@100;300;400;500;700;900&family=Noto+Serif+JP:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <style>
+            html{
+                font-family: 'Noto Sans JP', sans-serif;
+                font-weight: 700;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- font-awesome -->
+        <script src="https://kit.fontawesome.com/03ebcee952.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <h1>タイトル</h1>
+        <main>
+            
+        </main>
+        <div class="modal_wrapper">
+            <div class="modal_contents">
+                <div class="modal_close">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <div class="modal_main_contents">
+
+                    <div id="status">
+                        <p id="character"><img src="" alt="キャラ画像" width="" height=""></p>
+                        <p id="name" class="color_brown">佐藤&nbsp;田中</p>
+                        <p id="exp"></p>
+                        <p id="level"><img src="" alt="レベル画像" width="" height=""></p>
+                    </div>
+
+                    <table id="result_table" class="color_brown">
+                        <tr class="fixed">
+                            <th class="color_brown">設問</th>
+                            <th class="color_brown">採点</th>
+                            <th class="color_brown">正解</th>
+                            <th class="color_brown">あなたの回答</th>
+                            <th class="color_brown">正答率</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th class="q_number color_brown">1</th>
+                            <td class="q_result color_brown maru"></td>
+                            <td class="q_correct color_brown">①</td>
+                            <td class="q_your_answer color_brown">①</td>
+                            <td class="q_rate color_brown">60%</td>
+                            <td class="q_check color_brown"><button class="limegreen_btn">問題を見る</button></td>
+                        </tr>
+                        <!-- ここからはテスト用で増やしたやつ -->
+                        <tr>
+                            <th class="q_number color_brown">2</th>
+                            <td class="q_result color_brown batu"></td>
+                            <td class="q_correct color_brown">②</td>
+                            <td class="q_your_answer color_brown">①</td>
+                            <td class="q_rate color_brown">80%</td>
+                            <td class="q_check color_brown"><button class="limegreen_btn">問題を見る</button></td>
+                        </tr>
+                        <tr>
+                            <th class="q_number color_brown">3</th>
+                            <td class="q_result color_brown batu"></td>
+                            <td class="q_correct color_brown">①</td>
+                            <td class="q_your_answer color_brown">③</td>
+                            <td class="q_rate color_brown">20%</td>
+                            <td class="q_check color_brown"><button class="limegreen_btn">問題を見る</button></td>
+                        </tr>
+                        <tr>
+                            <th class="q_number color_brown">4</th>
+                            <td class="q_result color_brown batu"></td>
+                            <td class="q_correct color_brown">③</td>
+                            <td class="q_your_answer color_brown">②</td>
+                            <td class="q_rate color_brown">80%</td>
+                            <td class="q_check color_brown"><button class="limegreen_btn">問題を見る</button></td>
+                        </tr>
+                        <tr>
+                            <th class="q_number color_brown">5</th>
+                            <td class="q_result color_brown maru"></td>
+                            <td class="q_correct color_brown">④</td>
+                            <td class="q_your_answer color_brown">④</td>
+                            <td class="q_rate color_brown">40%</td>
+                            <td class="q_check color_brown"><button class="limegreen_btn">問題を見る</button></td>
+                        </tr>
+                    </table>
+
+                    <button id="confirm" class="white_btn color_brown">確認OK</button>
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

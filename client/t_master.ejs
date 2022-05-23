@@ -7,10 +7,15 @@
 	<meta content="タイトル" name="title">
 	<meta content="ディスクリプション" name="description">
 	<meta content="キーワード" name="keywords">
-	<!-- <link href="./css/destyle.css" rel="stylesheet"> -->
-	<!--   <link href="./css/modal.css" rel="stylesheet">
-  <link href="./css/common.css" rel="stylesheet">
-  <link href="./css/parts.css" rel="stylesheet"> -->
+	<link rel="icon" href="./img/favicon.jpg">
+	<link href="./css/destyle.css" rel="stylesheet">
+	<link href="./css/common.css" rel="stylesheet">
+	<link href="./css/modal.css" rel="stylesheet">
+	<link href="./css/parts.css" rel="stylesheet">
+	<link href="./css/T_naka2.css" rel="stylesheet">
+	<link href="./css/question_info.css" rel="stylesheet">
+	<link href="./css/wait.css" rel="stylesheet">
+	<link href="./css/t_sikennsyuuuryou.css" rel="stylesheet">
 	<!-- フォントの初期設定 -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,20 +45,78 @@
 	<!-- font-awesome -->
 	<script src="https://kit.fontawesome.com/03ebcee952.js" crossorigin="anonymous"></script>
 	<!-- bootstrap -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
 		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-	<!-- ファビコン -->
-	<link rel="icon" href="./img/D7iFTNRVUAEtnvL.jpg">
-	<link rel="stylesheet" href="./css/t_master.css">
+	<!-- <link rel="stylesheet" href="./css/t_master.css"> -->
+	<!-- Google font Icon -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
 </head>
 
 <body>
-	<h1>先生のマスタ画面</h1>
+	<h1>ようこそ、川島先生</h1>
 	<main>
+        <div id="icon_box">
+            <button class="top_btn1 white_btn" id="test_start_btn">
+                <p><img src="./img/pencil.png" alt="試験を開始アイコン"></p>
+                <p class="img_text color_brown">試験を開始</p>
+            </button>
+            <button class="top_btn2 white_btn">
+                <p><img src="./img/text.png" alt="テキストを共有アイコン"></p>
+                <p class="img_text color_brown">テキストを共有</p>
+            </button>
+            <button class="top_btn3 white_btn">
+                <p><img src="./img/attendance.png" alt="出席確認アイコン"></p>
+                <p class="img_text color_brown">出席確認</p>
+            </button>
+        </div>
+		<div class="modal_wrapper" id="modal1">
+            <div class="modal_contents">
+                <!-- <div class="modal_close">
+                    <i class="fas fa-times-circle"></i>
+                </div> -->
+                <div class="modal_main_contents" id="select_subject_1"><!-- モーダルの白い部分 -->
+                    <div class="grid">
+                        <h2 class="color_brown title">試験を開始する - 教科を選択する</h2>
+                        <div>
+                            <select name="subject" id="subject" class="select_box color_brown">
+                                <!-- <option value="" disabled selected style="display:none;">教科を選択してください</option> -->
+                                <% for(let key in categorys){ %>
+									<option value="<%= categorys[key].id %>">
+										<%= categorys[key].name %>
+									</option>
+								<% } %>
+                            </select>
+                            <svg width=60px height=60px xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><g fill="#46380D"><path d="M310.6 246.6l-127.1 128C176.4 380.9 168.2 384 160 384s-16.38-3.125-22.63-9.375l-127.1-128C.2244 237.5-2.516 223.7 2.438 211.8S19.07 192 32 192h255.1c12.94 0 24.62 7.781 29.58 19.75S319.8 237.5 310.6 246.6z"/></svg>
+                        </div>
+                        <button class="yellow_btn color_brown" type="button" id="btn1">科目選択へ進む</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		<!-- ちょっと待ったを押した生徒を表示させるモーダル -->
+		<div class="modal_wrapper-wait" id="wait-modal">
+            <div class="modal_contents-wait">
+                <div class="modal_close" id="wait-close">
+                    <i class="fas fa-times-circle" id="wait-modal-btn"></i>
+                </div>
+                <div class="modal_main_contents-wait" id="select_subject-wait"><!-- モーダルの白い部分 -->
+					<div id="overlay">
+						<div id="box_wrap">
+						  <table id="message-box"></table>
+						</div>
+					</div>
+                </div>
+            </div>
+        </div>
+		
+		<div id="wait-icon">
+			<button id="wait-check-btn"><img src="./img/ちょっと待て！.svg" width="50px" height="50px"></button>
+		</div>
 
-		<div class="w-50" style="margin:0 auto" id="modal1">
+		<!-- <div class="w-50" style="margin:0 auto" id="modal1">
 			<p>科目を選択してください</p>
 			<select name="subject" id="subject" class="form-select w-50" aria-label="Default select example">
 				<% for(let key in categorys){ %>
@@ -63,50 +126,297 @@
 					<% } %>
 			</select>
 			<button type="button" class="btn btn-success mt-5" id="btn1">問題選択へ</button>
-		</div>
+		</div> -->
 
-		<div class="w-50" style="margin:0 auto" id="modal2">
+		<div class="modal_wrapper" id="modal2">
+            <div class="modal_contents">
+                <!-- <div class="modal_close">
+                    <i class="fas fa-times-circle"></i>
+                </div> -->
+                <div class="modal_main_contents" id="set_question_2">
+                    <div class="grid">
+                        <h2 class="color_brown title">試験を開始する - 出題設定</h2>
+                        <div class="scroll_box">
+                            <div id="table2">
+                            </div>
+                        </div>
+                        
+                        <div class="btn_wrap">
+                            <button class="lightgray_btn color_brown" id="btn6">科目選択へ戻る</button>
+                            <button class="yellow_btn color_brown" id="btn2">次へ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="modal_wrapper" id="modal3">
+			<div class="modal_contents">
+				<!-- <div class="modal_close">
+					<i class="fas fa-times-circle"></i>
+				</div> -->
+				<div class="modal_main_contents">
+					<div id="question_info_wrapper">
+						<table id="t_question_info">
+							<tr>
+								<th>分野</th>
+								<td><span id="qi_subject"></span><span id="qi_focus"></span></td>
+							</tr>
+							<tr>
+								<th>問題タイプ</th>
+								<td id="qi_method">４択問題</td>
+							</tr>
+							<tr>
+								<th>内容</th>
+								<td id="qi_question"></td>
+							</tr>
+						</table>
+						<div id="selection_answer">
+							<div class="selection_label red" for="s_26"><div class="s_title">A</div><div class="content" id="qi_select_0"></div></div>
+							<div class="selection_label blue" for="s_27"><div class="s_title">B</div><div class="content" id="qi_select_1"></div></div>
+							<div class="selection_label green" for="s_28"><div class="s_title">C</div><div class="content" id="qi_select_2"></div></div>
+							<div class="selection_label yellow" for="s_29"><div class="s_title">D</div><div class="content" id="qi_select_3"></div></div>
+						</div>
+						<p id="question_info_ans"><i class="fas fa-hand-point-right"></i></i>答え「<span id="qi_ans_symbol"></span>：<span id="qi_ans"></span>」</p>
+						<div id="question_info_comment">
+						</div>
+					</div>
+					<button class="red_btn color_white" id="question_info_close"><i class="fas fa-times-circle"></i><span>閉じる</span></button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal_wrapper" id="modal4">
+            <div class="modal_contents">
+                <!-- <div class="modal_close">
+                    <i class="fas fa-times-circle"></i>
+                </div> -->
+                <div class="modal_main_contents" id="set_question_2">
+                    <div class="grid">
+                        <h2 class="color_brown title">試験を開始する - 出題設定</h2>
+                        <div class="scroll_box">
+                            <div id="question_confirm">
+                            </div>
+                        </div>
+                        <div class="btn_wrap">
+                            <button class="lightgray_btn color_brown" id="btn5">問題選択へ戻る</button>
+                            <button class="yellow_btn color_brown" id="btn4">試験開始</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<!-- <div class="w-50" style="margin:0 auto" id="modal3">
+			<p>問題内容</p>
+			<div id="question_info"></div>
+			<button type="button" class="btn btn-secondary mt-5" id="btn3">✕閉じる</button>
+		</div> -->
+		<!-- <div class="w-50" style="margin:0 auto" id="modal2">
 			<p>科目を選択してください</p>
 			<table id="checkbox_area"></table>
 			<button type="button" class="btn btn-secondary mt-5" id="btn6">戻る</button>
 			<button type="button" class="btn btn-success mt-5" id="btn2">確認画面へ</button>
-		</div>
+		</div> -->
 
-		<div class="w-50" style="margin:0 auto" id="modal3">
-			<p>問題内容</p>
-			<div id="question_info"></div>
-			<button type="button" class="btn btn-secondary mt-5" id="btn3">✕閉じる</button>
-		</div>
 
-		<div class="w-50" style="margin:0 auto" id="modal4">
+		<!-- <div class="w-50" style="margin:0 auto" id="modal4">
 			<p>選択した問題</p>
 			<table id="question_confirm"></table>
 			<button type="button" class="btn btn-secondary mt-5" id="btn5">戻る</button>
 			<button type="button" class="btn btn-success mt-5" id="btn4">試験開始</button>
+		</div> -->
+		
+		<div class="modal_wrapper" style="display:none" id="ob_modal">
+			<div class="modal_contents">
+				<!-- <div class="modal_close">
+					<i class="fas fa-times-circle"></i>
+				</div> -->
+				<div class="modal_main_contents">
+					<div class="title_head">
+						<div class="brown_btn">試験中</div>
+						<div class="title">
+							<p class="color_brown time_limit">残り時間</p>
+							<p class="color_brown" id="time">5:00</p>
+						</div>
+					</div>
+					
+					<div id="table3_wrapper">
+						<table id="table3">
+							<tr id="ob_question"></tr>
+						</table>
+					</div>
+					<div class="btn_head">
+						<div class="red_btn_head"><button class="red_btn color_white" id="break">中断</button></div>
+						<div class="red_btn_head"><button class="green_btn2 color_white" id="restart">再開</button></div>
+						<div class="gray_btn_head"><button class="gray_btn color_white" id="stop">一時停止</button></div>
+					</div>
+				</div>
+			</div>
 		</div>
 
-		<div class="w-50" style="margin:0 auto" id="modal5">
-			<p>試験中</p>
-			<table id="test_live"></table>
-			<button type="button" class="btn btn-secondary mt-5" id="btn7">中断</button>
-			<button type="button" class="btn btn-success mt-5" id="btn8">一時停止</button>
+        <!-- <div class="modal_wrapper" id="modal10" style="position: fixed;">
+            <div class="modal_contents">
+                <div class="modal_close">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <div class="modal_main_contents">
+                    <div id="question_info_wrapper">
+                        <table id="t_question_info">
+                            <tr>
+                                <th>分野</th>
+                                <td><span id="qi_subject_third"></span><span id="qi_focus_third"></span></td>
+                            </tr>
+                            <tr>
+                                <th>問題タイプ</th>
+                                <td id="qi_method">４択問題</td>
+                            </tr>
+                            <tr>
+                                <th>内容</th>
+                                <td id="qi_question_third"></td>
+                            </tr>
+                        </table>
+                        <div id="selection_answer">
+                            <div class="selection_label red" for="s_26"><div class="s_title">A</div><div class="content" id="qi_select_third_0"></div></div>
+                            <div class="selection_label blue" for="s_27"><div class="s_title">B</div><div class="content" id="qi_select_third_1"></div></div>
+                            <div class="selection_label green" for="s_28"><div class="s_title">C</div><div class="content" id="qi_select_third_2"></div></div>
+                            <div class="selection_label yellow" for="s_29"><div class="s_title">D</div><div class="content" id="qi_select_third_3"></div></div>
+                        </div>
+                        <p id="question_info_ans_third"><i class="fas fa-hand-point-right"></i></i>答え「<span id="qi_ans_symbol_third"></span>：<span id="qi_ans_third"></span>」</p>
+                        <div id="question_info_comment">
+                        </div>
+                    </div>
+                    <button class="red_btn color_white" i"><i_second class="fas fa-times-circle"></i><span>閉じる</span></button>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<!-- 試験終了1 -->
+		<div class="modal_wrapper" id="modal6">
+			<div class="modal_contents">
+				<!-- <div class="modal_close">
+					<i class="fas fa-times-circle"></i>
+				</div> -->
+				<div class="modal_main_contents">
+					<div class="title_head">
+						<div class="brown_btn">試験終了</div>
+						<p class="color_brown title_p">試験が終了しました。<br>
+							生徒はスコアボードを確認しています。
+						</p>
+					</div>
+
+					<div class="scroll_box">
+						<div id="test_finish_tech"></div>
+					</div>
+
+					<div class="yellow_btn_head"><button class="yellow_btn color_brown" id="commentary">解説画面へ</button></div>
+				</div>
+			</div>
 		</div>
 
-		<div class="w-50" style="margin:0 auto" id="modal6">
-			<p>試験終了</p>
-			<table id="test_confirm"></table>
-			<button type="button" class="btn btn-secondary mt-5" id="btn9">解説画面へ</button>
-		</div>
 
-		<div class="w-50" style="margin:0 auto" id="modal7">
-			<p>試験終了</p>
-			<div id="comment_info"></div>
-			<button type="button" class="btn btn-secondary mt-5" id="btn10">試験を終了</button>
-		</div>
+
+		<!-- 試験終了2 -->
+        <div class="modal_wrapper" id="modal7">
+            <div class="modal_contents">
+                <!-- <div class="modal_close">
+                    <i class="fas fa-times-circle"></i>
+                </div> -->
+                <div class="modal_main_contents">
+                    <div class="title_head">
+                        <div class="brown_btn">試験終了</div>
+                        <p class="color_brown title_p">試験が終了しました。<br>
+                            生徒はスコアボードを確認しています。
+                        </p>
+                    </div>
+                    <div class="scroll_box">
+                        <div id="test_comment_tech"></div>
+					</div>
+                    <div class="yellow_btn_head"><button class="yellow_btn color_brown" id="test_complete">試験を終了</button></div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- <div class="modal_wrapper" id="modal8" style="position: fixed;">
+            <div class="modal_contents">
+                <div class="modal_close">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <div class="modal_main_contents">
+                    <div id="question_info_wrapper">
+                        <table id="t_question_info">
+                            <tr>
+                                <th>分野</th>
+                                <td><span id="qi_subject_second"></span><span id="qi_focus_second"></span></td>
+                            </tr>
+                            <tr>
+                                <th>問題タイプ</th>
+                                <td id="qi_method">４択問題</td>
+                            </tr>
+                            <tr>
+                                <th>内容</th>
+                                <td id="qi_question_second"></td>
+                            </tr>
+                        </table>
+                        <div id="selection_answer">
+                            <div class="selection_label red" for="s_26"><div class="s_title">A</div><div class="content" id="qi_select_second_0"></div></div>
+                            <div class="selection_label blue" for="s_27"><div class="s_title">B</div><div class="content" id="qi_select_second_1"></div></div>
+                            <div class="selection_label green" for="s_28"><div class="s_title">C</div><div class="content" id="qi_select_second_2"></div></div>
+                            <div class="selection_label yellow" for="s_29"><div class="s_title">D</div><div class="content" id="qi_select_second_3"></div></div>
+                        </div>
+                        <p id="question_info_ans_second"><i class="fas fa-hand-point-right"></i>答え「<span id="qi_ans_symbol_second"></span>：<span id="qi_ans_second"></span>」</p>
+                        <div id="question_info_comment"></div>
+                    </div>
+                    <button class="red_btn color_white" id="close_btn_second"><i class="fas fa-times-circle"></i><span>閉じる</span></button>
+                </div>
+            </div>
+        </div> -->
+
+
+		<!-- 解説 -->
+		<div class="modal_wrapper" style="display:flex" id="modal9">
+            <div class="modal_contents">
+                <div class="modal_main_contents" id="share_comment">
+                    <p class="brown_btn color_brown" id="finish">試験終了</p>
+                    <button class="red_btn color_brown" id="close">閉じる</button>
+                    <h2  id="explain" class="color_brown title">問<span class="ques_number"></span>の解説を表示しています。</h2>
+                    <div id="t_answer">
+                        <p id="result" class="color_brown">問<span class="ques_number"></span>の答えは・・・<span id="answer_number"></span></p>
+                        <p id="explanation_img" class="color_brown"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
 	</main>
 	<script>
 		const loginId = '<%= loginId %>';
 	</script>
+	<audio id="loginBackSound" src="./se/loginBackSound.mp3" type="audio/mp3"></audio>
+	<audio id="btnClick" src="./se/btnClick.mp3" type="audio/mp3"></audio>
+	<audio id="tabOff" src="./se/tabOff.mp3" type="audio/mp3"></audio>
+	<audio id="wait-music" src="./se/wait.mp3" type="audio/mp3"></audio>
 </body>
 
 </html>

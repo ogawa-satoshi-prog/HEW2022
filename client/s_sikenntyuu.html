@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>QuestMeeting</title>
+        <meta content="タイトル" name="title">
+        <meta content="ディスクリプション" name="description">
+        <meta content="キーワード" name="keywords">
+        <link href="./css/destyle.css" rel="stylesheet">
+        <link href="./css/modal.css" rel="stylesheet">
+        <link href="./css/common.css" rel="stylesheet">
+        <link href="./css/parts.css" rel="stylesheet">
+        <link href="./css/s_sikentyuu.css" rel="stylesheet">
+        <link href="./css/s_kaitoutyuu.css" rel="stylesheet">
+        <link href="./css/s_sikennkekkakakuninn.css" rel="stylesheet">
+        <link href="./css/s_kaisetutyuu.css" rel="stylesheet">
+        <link href="./css/mondaiwomiru.css" rel="stylesheet">
+        <!-- フォントの初期設定 -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&family=New+Tegomin&family=Noto+Sans+JP:wght@100;300;400;500;700;900&family=Noto+Serif+JP:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <style>
+            html{
+                font-family: 'Noto Sans JP', sans-serif;
+                font-weight: 700;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- font-awesome -->
+        <script src="https://kit.fontawesome.com/03ebcee952.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <!-- ヘッダー挿入位置 header_s -->
+        <main>
+            <div id="image"><img src="./img/stop_img.png" alt="stop_btn" width="500" height="460"></p></div>
+            <div id="section">
+                <p class="color_brown">現在試験中です･･･</p>
+                <p id="timer_area" class="color_brown">残り<span id="timer">00:00</span></p>
+                <button class="green_btn color_brown">試験を解く</button>
+            </div>
+        </main>
+
+        <!-- 解答中モーダル -->
+        <div class="modal_wrapper">
+            <div class="modal_contents">
+                <div class="modal_close">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <div class="modal_main_contents color_brown">
+
+                    <div id="left_side">
+                        <div id="question_list">
+                            <p class="quesiton_num">1</p>
+                            <p class="quesiton_num">2</p>
+                            <p class="quesiton_num selected">3</p>
+                            <p class="quesiton_num">4</p>
+                            <p class="quesiton_num">5</p>
+                        </div>
+                        <div id="time_area">
+                            <p id="remind">残り</p>
+                            <p id="time">00:00</p>
+                        </div>
+                    </div>
+
+                    <div id="right_side">
+                        <div id="question_sentence">
+                            <h2 class="color_brown">Q1</h2><p>私は彼が有名なスター選手であることに気付かなかった</p>
+                        </div>
+                        <p id="question_content">I was not <span class="question_mark"></span> of her being famous movie star.</p>
+                        <form>
+                            <div id="select_answer">
+                                <input type="radio" id="q1" name="answer" value="q1"><label for="q1">①&nbsp;notice</label>
+                                <input type="radio" id="q2" name="answer" value="q1"><label for="q2">②&nbsp;know</label>
+                                <input type="radio" id="q3" name="answer" value="q1"><label for="q3">③&nbsp;aware</label>
+                                <input type="radio" id="q4" name="answer" value="q1"><label for="q4">④&nbsp;see</label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 試験結果確認モーダル -->
+        <div class="modal_wrapper">
+            <div class="modal_contents">
+                <div class="modal_close">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <div class="modal_main_contents">
+
+                    <div id="status">
+                        <p id="character"><img src="" alt="キャラ画像" width="" height=""></p>
+                        <p id="name" class="color_brown">佐藤&nbsp;田中</p>
+                        <p id="exp"></p>
+                        <p id="level"><img src="" alt="レベル画像" width="" height=""></p>
+                    </div>
+
+                    <table id="result_table" class="color_brown">
+                        <tr class="fixed">
+                            <th class="color_brown">設問</th>
+                            <th class="color_brown">採点</th>
+                            <th class="color_brown">正解</th>
+                            <th class="color_brown">あなたの回答</th>
+                            <th class="color_brown">正答率</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th class="q_number color_brown">1</th>
+                            <td class="q_result color_brown maru"></td>
+                            <td class="q_correct color_brown">①</td>
+                            <td class="q_your_answer color_brown">①</td>
+                            <td class="q_rate color_brown">60%</td>
+                            <td class="q_check color_brown"><button class="limegreen_btn">問題を見る</button></td>
+                        </tr>
+                        <!-- ここからはテスト用で増やしたやつ -->
+                        <tr>
+                            <th class="q_number color_brown">2</th>
+                            <td class="q_result color_brown batu"></td>
+                            <td class="q_correct color_brown">②</td>
+                            <td class="q_your_answer color_brown">①</td>
+                            <td class="q_rate color_brown">80%</td>
+                            <td class="q_check color_brown"><button class="limegreen_btn">問題を見る</button></td>
+                        </tr>
+                        <tr>
+                            <th class="q_number color_brown">3</th>
+                            <td class="q_result color_brown batu"></td>
+                            <td class="q_correct color_brown">①</td>
+                            <td class="q_your_answer color_brown">③</td>
+                            <td class="q_rate color_brown">20%</td>
+                            <td class="q_check color_brown"><button class="limegreen_btn">問題を見る</button></td>
+                        </tr>
+                        <tr>
+                            <th class="q_number color_brown">4</th>
+                            <td class="q_result color_brown batu"></td>
+                            <td class="q_correct color_brown">③</td>
+                            <td class="q_your_answer color_brown">②</td>
+                            <td class="q_rate color_brown">80%</td>
+                            <td class="q_check color_brown"><button class="limegreen_btn">問題を見る</button></td>
+                        </tr>
+                        <tr>
+                            <th class="q_number color_brown">5</th>
+                            <td class="q_result color_brown maru"></td>
+                            <td class="q_correct color_brown">④</td>
+                            <td class="q_your_answer color_brown">④</td>
+                            <td class="q_rate color_brown">40%</td>
+                            <td class="q_check color_brown"><button class="limegreen_btn">問題を見る</button></td>
+                        </tr>
+                    </table>
+
+                    <button id="confirm" class="white_btn color_brown">確認OK</button>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- 解説中モーダル -->
+        <div class="modal_wrapper">
+            <div class="modal_contents">
+                <div class="modal_close">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <div class="modal_main_contents">
+                    <h2 class="color_brown title">先生が解説中です・・・</h2>
+                    <div id="main">
+                        <div id="question" class="color_brown">
+                            <p>Q1<span>私は彼が有名なスター選手であることに気付かなかった</span></p>
+                        </div>
+                        <div id="select" class="color_brown">
+                            <p>①&nbsp;notice</p>
+                            <p>②&nbsp;know</p>
+                            <p class="answer">③&nbsp;aware</p>
+                            <p>④&nbsp;see</p>
+                        </div>
+                        <div id="point" class="color_brown">
+                            <p id="point_text" class="color_brown"><span>POINT：</span>ポイント</p>
+                            <p id="explanation" class="color_brown">Aであることに気づく、Aであることに認知している</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 問題をみるモーダル -->
+        <div class="modal_wrapper">
+            <div class="modal_contents">
+                <div class="modal_close">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <div class="modal_main_contents color_brown">
+                    <div id="question_check">
+                        <div id="question_sentence">
+                            <h2 class="color_brown">文法問題：be aware of A【1】</h2>
+                        </div>
+                        <p id="question_content">I was not <span class="question_mark"></span> of her being famous movie star.</p>
+                        <form>
+                            <div id="select_answer">
+                                <input type="radio" id="q1" name="answer" value="q1"><label for="q1">①&nbsp;notice</label>
+                                <input type="radio" id="q2" name="answer" value="q1"><label for="q2">②&nbsp;know</label>
+                                <input type="radio" id="q3" name="answer" value="q1"><label for="q3" class="question_answer">③&nbsp;aware</label>
+                                <input type="radio" id="q4" name="answer" value="q1"><label for="q4">④&nbsp;see</label>
+                            </div>
+                        </form>
+                        <button id="close_btn" class="red_btn">閉じる</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </body>
+</html>

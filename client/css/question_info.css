@@ -1,0 +1,134 @@
+#question_info_wrapper {
+  overflow-y: scroll;
+  width: 100%;
+  height: 60%;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-top: 5%;
+}
+
+#question_info_wrapper #t_question_info {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+}
+
+#question_info_wrapper #t_question_info tr {
+  width: 100%;
+}
+
+#question_info_wrapper #t_question_info tr th {
+  width: 15%;
+  padding: 3px 10px;
+}
+
+#question_info_wrapper #t_question_info tr td {
+  width: 85%;
+  padding: 3px 10px;
+}
+
+#question_info_wrapper #t_question_info tr th, #question_info_wrapper #t_question_info tr td {
+  border: 2px solid #707070;
+}
+
+#question_info_wrapper #selection_answer {
+  margin: 15px 0;
+  width: 100%;
+  height: 90px;
+  box-sizing: content-box;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+#question_info_wrapper #selection_answer .selection_label {
+  width: 96%;
+  margin: 0 2%;
+  height: 100%;
+  border-radius: 14px;
+  display: flex;
+  font-size: x-large;
+  text-align: center;
+  font-weight: 1000;
+  transition: background-color .5s;
+  position: relative;
+  cursor: pointer;
+}
+
+#question_info_wrapper #selection_answer .selection_label .s_title {
+  width: 11%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 18px;
+}
+
+#question_info_wrapper #selection_answer .selection_label .content {
+  width: 87%;
+  height: 92%;
+  background-color: white;
+  border-radius: 0 10px 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 1.9%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+}
+
+#question_info_wrapper #question_info_ans i {
+  font-size: 16px;
+  color: #707070;
+  width: 3%;
+  display: inline-block;
+}
+
+#question_info_wrapper #question_info_comment {
+  font-size: 14px;
+  line-height: 21px;
+  margin: 10px 2.5% 25px 2.5%;
+  width: 95%;
+  box-sizing: border-box;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #feffea;
+}
+
+#question_info_close {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 8%;
+}
+
+.red {
+  background-color: #EA4E4E;
+}
+
+.blue {
+  background-color: #4E53EA;
+}
+
+.green {
+  background-color: #46B53E;
+}
+
+.yellow {
+  background-color: #E5EA4E;
+}
+
+div#question_info_comment img {
+  width: 100%;
+}
+
+#qi_question img {
+  width: 100%;
+}
+/*# sourceMappingURL=question_info.css.map */

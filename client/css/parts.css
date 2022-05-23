@@ -3,7 +3,6 @@
 *{
   margin: 0px;
   padding: 0px;
-  margin: 0 auto;
   font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 /***************************************************/
@@ -247,11 +246,47 @@ select::-ms-expand {
   font-size: 25px;
   font-weight: 800;
   text-align: center;
-  line-height: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.red_btn > span{
+  padding-top: 5px;
+  margin: 0 5px;
 }
 .red_btn:hover{
   background-color: rgb(207, 42, 42); 
   color: #FEE;
+}
+
+/****************************************************/
+/********************* green_btn2 *******************/
+/****************************************************/
+.green_btn2{
+  width: 180px;
+  height: 55px;
+  color: #FFF;
+  background-color: rgb(87,188,55);
+  border: none;
+  border-radius: 5px;
+  font-size: 25px;
+  font-weight: 800;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.green_btn2 > span{
+  padding-top: 5px;
+  margin: 0 5px;
+}
+.green_btn2:hover{
+  background-color: rgb(60, 160, 30);
+  color: #FEE;
+}
+
+#restart{
+  display: none;
 }
 
 /****************************************************/

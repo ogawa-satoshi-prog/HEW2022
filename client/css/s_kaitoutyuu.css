@@ -9,7 +9,7 @@
 }
 #left_side #question_list{/* 左側の問題番号の部分 */
     position: absolute;
-    top: 10%;
+    top: 0%;
     left: 0%;
 }
 #left_side #time_area{/* 残り時間表示のところ */
@@ -24,32 +24,52 @@
     left: -5%;
 }
 #right_side #question_sentence h2{/* Qのところ */
-    position: absolute;
-    top: 15%;
-    left: 0%;
+/*     position: absolute;
+    top: 10.5%;
+    left: -4%; */
 }
 #right_side #question_sentence p{/* 問題文 */
-    position: absolute;
+/*     position: absolute;
     top: 15%;
-    left: 10%;
+    left: 10%; */
 }
 #right_side #question_content{/* 問題内容 */
-    position: absolute;
-    top: 35%;
+/*     position: absolute;
+    top: 10.3%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0); */
+    margin: 15px 0;
+}
+#right_side #question_content img{
+    width: 100%;
 }
 #right_side #select_answer{/* 答え選択のところ */
-    position: absolute;
+    /* position: absolute;
     bottom: -10%;
     left: 55%;
     transform: translate(-50%, -50%);
     display: flex;
     justify-content: space-around;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: wrap; */
+    width: 600px;
+    height: 180px;
+    box-sizing: content-box;
+    /* position: absolute;
+    top: 34%;
+    left: 50%;
+    transform: translateX(-50%); */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
 }
-
+/* #right_side #select_answer{
+    width: 100%;
+    height: 35%;
+    border: 2px solid #777;
+    box-sizing: content-box;
+} */
 
 /* デザイン */
 /* 左側 */
@@ -62,7 +82,14 @@
     font-weight: 1000;
     padding: 0.25rem 1rem;
     margin: 0.75rem 0;
+    transition: background-color .5s;
+    background-color: #FFF;
+    cursor: pointer;
 }
+#left_side #question_list p:hover{
+    background-color: rgba(86, 189, 55, 0.651);
+}
+
 #left_side #time_area{/* 残り時間表示のところ */
     font-size: x-large;
     font-weight: 1000;
@@ -92,26 +119,78 @@
 #right_side #question_sentence p{
     width: 600px;
 }
-#right_side #select_answer{/* 答え選択のところ */
-    width: 100%;
-    height: 35%;
-    border: 2px solid #777;
-    box-sizing: content-box;
-}
 #right_side #select_answer label{/* 選択肢の文章 */
-    width: 40%;
+    /* width: 40%;
     font-size: x-large;
     text-align: center;
     font-size: x-large;
     font-weight: 1000;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
+    background-color: #FFF;
+    transition: background-color .5s; */
+    width: 100%;
+    height: 100%;
+    border-radius: 14px;
+    display: flex;
+    font-size: x-large;
+    text-align: center;
+    font-weight: 1000;
+    transition: background-color .5s;
+    position: relative;
+    cursor: pointer;
+}
+
+#select_answer label .select_title {
+    width: 11%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+#select_answer label .select_content {
+    width: 87%;
+    height: 92%;
+    background-color: white;
+    border-radius: 0 9px 9px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 1.9%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.red {
+    background-color: #EA4E4E;
+}
+
+.blue {
+    background-color: #4E53EA;
+}
+
+.green {
+    background-color: #46B53E;
+}
+
+.yellow {
+    background-color: #E5EA4E;
+}
+
+#right_side #select_answer label:hover{
+    background-color: rgb(0, 0, 0);
 }
 input{/* ラジオボタン */
     display: none;
 }
 input:checked + label{
-    outline: 2px solid rgb(87,189,55);
+    outline: 5px solid #57bd37;
 }
 
 
@@ -119,8 +198,9 @@ input:checked + label{
 /* 現在の問題番号につけるククラス */
 .selected{
     border: 2px solid rgb(87,189,55);
-    background: rgb(87,189,55);
+    background: rgb(87,189,55)!important;
     color: #FFF;
+    cursor: default!important;
 }
 /* 答えにつけるクラス */
 .answer{
@@ -136,4 +216,34 @@ input:checked + label{
 .question_mark::after{
     content: "?";
     padding: 0.1rem 3rem;
+}
+
+/* 試験終了用ボタン */
+#test_finish_btn{
+    width: 180px;
+    height: 50px;
+    border-radius: 14px;   
+    color: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 3%;
+}
+
+.finish_not_allow{
+    background-color: #363636;
+    cursor: not-allowed;
+}
+
+.finish_allow{
+    background-color: #46B53E;
+    transition: .5s background-color;
+    cursor: pointer;
+}
+
+.finish_allow:hover{
+    background-color: #3a9234;
 }

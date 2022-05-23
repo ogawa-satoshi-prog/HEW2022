@@ -1,0 +1,437 @@
+@charset "utf-8";
+
+/**title**/
+.title_head{
+  display: flex;
+  width: 100%;
+
+}
+.title_p{
+  display: block;
+  width: 70%;
+  margin: 0 auto;
+  font-size: 25px;
+  font-weight: 600;
+}
+/**ボタン位置**/
+.yellow_btn_head{
+  /* display: flex;
+  justify-content: center; */
+  position: absolute;
+  left: 50%;
+  bottom: 7%;
+  transform: translate(-50%, 0%);
+  /* margin: auto; */
+}
+/**************************************************************************************************************/
+/**テーブル試験終了1**/
+/**************************************************************************************************************/
+#table1{
+  width: 100%;
+}
+.block{
+  width: 100px;
+}
+.line{
+  display: flex;
+  margin-bottom: 10px;
+}
+.cell_top{
+  width: 100px;
+  height: 23px;
+  line-height: 23px;
+  font-weight: 300;
+  font-size: 15px;
+  text-align: center;
+  color: white;
+  background-color: #46380D;
+}
+.cell_bottom{
+  width: 100px;
+  height: 27px;
+  line-height: 25px;
+  font-weight: 600;
+  font-size: 17px;
+  text-align: center;
+  color: red;
+  background-color: rgb(250, 250, 220);
+}
+/**************************************************************************************************************/
+/**テーブル試験終了2**/
+/**************************************************************************************************************/
+.scroll_box{
+  /* background-color: red; */
+  margin-top: 50px;
+  margin-bottom: 50px;
+  width: 100%;
+  height: 400px;
+  /* padding: 70px; */
+  border-radius: 13px;
+  box-shadow: 0 0 8px rgb(200, 200, 200);
+  overflow-y: scroll;
+  border: solid 60px white;
+  box-shadow: 0 0 8px rgb(200, 200, 200),
+  0px 0px 30px rgba(255, 255, 255) inset,
+  10px 10px 30px rgba(255, 255, 255) inset;
+}
+/* スクロールバーの太さ */
+.scroll_box::-webkit-scrollbar {
+  width: 20px;
+}
+/* スクロールバーの後ろ部分 */
+.scroll_box::-webkit-scrollbar-track {
+  box-shadow:0 0 5px #bbbbbb inset ;
+  border-radius: 10px;
+}
+/* スクロールバーのつまみ */
+.scroll_box::-webkit-scrollbar-thumb {
+  background: #808080;
+  border-radius: 10px;
+}
+#table2{
+  width: 100%;
+  height: 100%;
+  /* box-shadow: -10px -10px 10px rgba(255, 255, 255, 0.917) inset,
+  10px 10px 10px rgba(255, 255, 255, 0.91) inset; */
+  z-index: 1;
+}
+.row{
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  height: 70px;
+  box-sizing: border-box;
+  opacity: 0.9;
+  padding-top: 8px;
+  border-bottom: solid 1px #46380D;
+}
+.cell_num{
+  font-size: 25px;
+  font-weight: 800;
+  text-align: center;
+  line-height: 55px;
+}
+.special-width{
+  width: 70px;
+}
+
+/**************************************************************************************************************/
+/**試験中**/
+/**************************************************************************************************************/
+.btn_head{
+  width: 50%;
+  display: flex;
+  position: absolute;
+  bottom: 60px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  justify-content: space-evenly;
+}
+.title{
+  width: 70%;
+  display: flex;
+  font-size: 27px;
+  font-weight: 700;
+}
+.time_limit{
+  padding-right: 20px;
+}
+
+/* テーブル3 */
+#table3_wrapper{ 
+  width: 90%;
+  height: 70%;
+  margin: 30px;
+  overflow: scroll;
+}
+
+#table3{
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 70px;
+  margin-bottom: 50px;
+  border-spacing: 2px;
+  max-height: 600px;
+}
+
+#table3 th,#table td{
+  border-collapse: separate;
+  border-spacing: 2px;
+}
+
+#table3 tr{
+  width: 100%;
+  height: 40px;
+}
+#table3 tr .test_name_white{
+  width: 200px;
+  height: 39px;
+  background-color: rgba(255, 255, 255, 0);
+  border: solid 1px white;
+}
+#table3 tr .test_name{
+  width: 200px;
+  height: 39px;
+  background-color: #46380D;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 39px;
+  padding-left: 15px;
+  border: solid 1px white;
+}
+#table3 tr .test_cell_head{
+  width: 46px;
+  height: 39px;
+  background-color: #46380D;
+  color: white;
+  text-align: center;
+  line-height: 39px;
+  font-size: 20px;
+  border: solid 1px white;
+  position: relative;
+}
+#table3 tr .test_cell{
+  width: 46px;
+  height: 39px;
+  background-color: rgb(255, 252, 201);
+  text-align: center;
+  border: solid 1px white;
+  position: relative;
+  cursor: pointer;
+}
+
+/**吹き出し問題文**/
+.tooltip{
+  cursor: pointer;
+}
+
+.balloon_question_content{
+  max-width: 400px;
+  height: max-content;
+  display: flex;
+  justify-content: flex-start;
+  text-align: start;
+  font-size: 14px;
+  line-height: 21px;
+  margin: 0 5px;
+}
+
+.balloon2 {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  min-width: 120px;
+  color: #56481A;
+  font-size: 16px;
+  background: #FFF;
+  border: solid 4px #56481A;
+  box-sizing: border-box;
+  width: max-content;
+  height: 60px;
+  border-radius: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -170%;
+  padding: 0 5px;
+  display: none;
+}
+
+.balloon2:before {
+  content: "";
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 12px solid transparent;
+  border-top: 12px solid #FFF;
+  z-index: 2;
+}
+
+.balloon2:after {
+  content: "";
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 14px solid transparent;
+  border-top: 14px solid #56481A;
+  z-index: 1;
+}
+
+.btn_in_balloon{
+  width: 90px;
+  height: 35px;
+  margin: 5px;
+  padding-top: 4px;
+  font-size: 14px;
+  display: flex;
+  background-color: #FFDD38;
+  font-weight: 600;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  transition: .2s;
+}
+
+.btn_in_balloon:hover{
+  background-color: #af9928;
+}
+
+.active_balloon{
+  z-index: 100;
+}
+
+.yellow_btn_balloon{
+  width: 35%;
+  height: 40px;
+  margin: 0 auto;
+}
+#table3 .yellow_btn{
+  width: 150px;
+  height: 40px;
+  align-items: center;
+  text-align: center;
+  line-height: 40px;
+  font-size: 18px;
+}
+
+
+/**吹き出し答えたやつ**/
+.tooltip_ans{
+  cursor: pointer;
+}
+.balloon_ans { /* ツールチップのスタイル */
+  width: 60px; /* 横幅 */
+  height: 50px;
+  position: absolute;
+  left: 43%;
+  bottom: 80%; /* Y軸の位置 */
+  /* transform: translateX(-40%); */
+  padding: 8px;
+  padding-top: 10px;
+  border-radius: 10px; /* 角の丸み */
+  background-color: white; /* ツールチップの背景色 */
+  border: solid 1px#46380D;
+  font-size: 1.3em;
+  font-weight: 500;
+  color: #46380D;
+  justify-content: center;
+  visibility: hidden; /* ツールチップを非表示に */
+  opacity: 0; /* 不透明度を0％に */
+  z-index: 1;
+  transition: 0.5s all; /* マウスオーバー時のアニメーション速度 */
+}
+
+.balloon_ans::before { /* 吹き出しの「しっぽ」のスタイル */
+  content: "";
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-top: 12px solid white; /* 最後の値は「ツールチップの背景色」と合わせる */
+  position: absolute;
+  top: 99%;
+  left: 53%;
+  /* transform: translateX(-50%); */
+  bottom: -15px;
+  margin-left: -15px;
+  z-index: 2;
+}
+.balloon_ans::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border: 11px solid transparent;
+  border-top: 13px solid #46380D;
+  position: absolute;
+  top: 99%;
+  left: 53%;
+  bottom: -15px;
+  /* transform: translateX(-50%); */
+  margin-left: -15px;
+  z-index: 1;
+}
+.tooltip_ans:hover .balloon_ans { /* マウスオーバー時のスタイル */
+  bottom: 72%; /* Y軸の位置 */
+  visibility: visible; /* ツールチップを表示 */
+  opacity: 1; /* 不透明度を100％に */
+}
+
+.circle{
+  color: blue;
+  font-weight: bold!important;
+}
+
+.clear{
+  color: #FF2A00;
+  font-size: 28px!important;
+  font-weight: bold!important;
+}
+
+.remove{
+  color: #56481A;
+  font-size: 28px!important;
+  font-weight: bold!important;
+}
+
+.circle,.clear,.remove{
+  width: 100%;
+  height: 100%;
+  display: flex!important;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 先生側TOP */
+#icon_box{/* 3つのボタンのエリア */
+    /* レイアウト */
+    display: flex;
+    justify-content: space-between;
+    flex-basis: auto;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* デザイン */
+    width: 100%;
+}
+#icon_box button{/* 3つのボタン */
+  position: relative;
+  width: 325px;
+  height: 325px;
+  border-radius: 35px;
+  transition: 0.25s;
+}
+#icon_box button:hover{
+  background: #FFDD38;
+  width: 335px;
+  height: 335px;
+  transition: 0.25s;
+}
+#icon_box img{/* 3つのボタンの画像 */
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30%;
+  margin-top: 10%;
+}
+.img_text{/* 3つのボタンの下部にある文字 */
+    /* レイアウト */
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    text-align: center;
+    /* デザイン */
+    width: 100%;
+    font-size: 2.25rem;
+    font-weight: 1000;
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,54 @@
+#wait-modal{
+    width: fit-content;
+    /* height: 20px; */
+    position: fixed;
+    top: 5px;
+    right: 5px;
+    z-index: 100;
+}
+.modal_wrapper-wait{
+    width: fit-content;
+    /* height: 20px; */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 999;
+    padding: 3px;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.modal_contents-wait{
+    width: fit-content;
+    /* height: 20px; */
+    background-color: white;
+    /* border-radius: 20px; */
+    position: relative;   
+    padding: 10px;
+}
+#select_subject-wait{
+    width: fit-content;
+}
+
+#wait-icon{
+    position: fixed;
+    top: 5px;
+    right: 5px;
+    z-index: 999;;
+}
+#wait-close{
+    width: 20px;
+    margin-bottom: 8px;
+}
+#wait-modal-btn{
+    width: 20px;
+    text-align: right;
+    padding-bottom: 3px;
+}
+.name_wait{
+    width: 220px;
+    display: flex;
+    margin-bottom: 1px;
+    justify-content: space-between;
+}

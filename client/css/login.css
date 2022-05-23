@@ -12,17 +12,17 @@
         transform: translate(-50%, -50%);
     }
     h1{
-        display: inline-block;
+        display: block;
         position: absolute;
         top: 10%;
-        left: 35%;
-        right: 65%;
+        left: 50%;
+        transform: translateX(-50%);
     }
     #input_area{
         position: absolute;
         top: 45%;
-        left: 25%;
-        right: 75%;
+        width: max-content;
+        left: 50%;
         transform: translate(-50%, -50%);
     }
     #input_area div{
@@ -33,10 +33,10 @@
     }
     #check{
         position: absolute;
-        left: 60%;
-        right: 40%;
+        left: 50%;
         transform: translate(-50%, -50%);
         bottom: 20%;
+        width: max-content;
     }
     button{
         text-align: center;
@@ -124,10 +124,11 @@ p{
 }
 #input_area .color_brown{
     display: block;
-    width: 300px;
+    width: max-content;
+    
 }
 #check{
-    width: 50%;
+    width: max-content;
 }
 
 /* パーツ微調整 */

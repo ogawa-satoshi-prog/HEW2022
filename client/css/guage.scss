@@ -1,0 +1,97 @@
+main{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#status1{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 60px 200px 1fr;
+    grid-template-rows: 40px;
+    #character{
+        grid-row: 1/2;
+        grid-column: 1/2;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+            height: 40px;
+            width: 40px;
+        }
+    }
+    #name{
+        grid-row: 1/2;
+        grid-column: 2/3;
+        font-size: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #level_area{
+        grid-row: 1/2;
+        grid-column: 3/4;
+        height: 40px;
+        width: max-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        #guage_wrap{
+            width: 370px;
+            height: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 37px 37px 37px 37px;
+            border: #707070 2px solid;
+            #guage{
+                width: 360px;
+                height: 15px;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                #guage_solid_wrap{
+                    width: 0%;
+                    height: 100%;
+                    overflow-x: hidden;
+                    #guage_solid{
+                        //overflow-x: hidden;
+                        width: 360px;
+                        height: 100%;
+                        background-image: url("./../img/guage.svg");
+                        border-radius: 2.5em;
+                        background-position: 0px 0px;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+                }
+            }
+        }
+        #level{
+            width: 50px;
+            height: 40px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            #level_content{
+                width: max-content;
+                z-index: 10;
+            }
+            #level_up_img{
+                height: 100%;
+                position: absolute;
+                left: 50%;
+                top: 100%;
+                transform: translate(-50%,-50%);
+                z-index: 1;
+                opacity: 0;
+            }
+        }
+    }
+}

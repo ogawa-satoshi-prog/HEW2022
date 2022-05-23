@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>QuestMeeting</title>
+        <meta content="タイトル" name="title">
+        <meta content="ディスクリプション" name="description">
+        <meta content="キーワード" name="keywords">
+        <link href="./css/destyle.css" rel="stylesheet">
+        <link href="./css/common.css" rel="stylesheet">
+        <link href="./css/parts.css" rel="stylesheet">
+        <link href="./css/modal.css" rel="stylesheet">
+        <link href="./css/T_naka.css" rel="stylesheet"><!-- 先生側試験終了1,2 & 先生側試験中 -->
+        <link href="./css/t_sikennsyuuuryou.css" rel="stylesheet"><!-- 先生側試験終了3 -->
+        <link href="./css/mondaiwomiru.css" rel="stylesheet"><!-- 問題を見る -->
+        <!-- フォントの初期設定 -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&family=New+Tegomin&family=Noto+Sans+JP:wght@100;300;400;500;700;900&family=Noto+Serif+JP:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <style>
+            html{
+                font-family: 'Noto Sans JP', sans-serif;
+                font-weight: 700;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- font-awesome -->
+        <script src="https://kit.fontawesome.com/03ebcee952.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <!-- <h1>タイトル</h1> -->
+        <main id="s_top">
+            <div id="icon_box">
+                <button class="top_btn1 white_btn">
+                    <p><img src="../client/img/pencil.png" alt="試験を開始アイコン"></p>
+                    <p class="img_text color_brown">試験を開始</p>
+                </button>
+                <button class="top_btn2 white_btn">
+                    <p><img src="../client/img/text.png" alt="テキストを共有アイコン"></p>
+                    <p class="img_text color_brown">テキストを共有</p>
+                </button>
+                <button class="top_btn3 white_btn">
+                    <p><img src="../client/img/attendance.png" alt="出席確認アイコン"></p>
+                    <p class="img_text color_brown">出席確認</p>
+                </button>
+            </div>
+        </main>
+        <!-- 試験科目選択 -->
+        <div class="modal_wrapper">
+            <div class="modal_contents">
+                <div class="modal_close">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <div class="modal_main_contents" id="select_subject_1"><!-- モーダルの白い部分 -->
+                    <div class="grid">
+                        <h2 class="color_brown title">試験を開始する - 教科を選択する</h2>
+                        <div>
+                            <select name="" class="select_box color_brown">
+                                <option value="" disabled selected style="display:none;">教科を選択してください</option>
+                                <option value="サンプル1">サンプル1</option>
+                                <option value="サンプル2">サンプル2</option>
+                                <option value="サンプル3">サンプル3</option>
+                            </select>
+                            <svg width=60px height=60px xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><g fill="#46380D"><path d="M310.6 246.6l-127.1 128C176.4 380.9 168.2 384 160 384s-16.38-3.125-22.63-9.375l-127.1-128C.2244 237.5-2.516 223.7 2.438 211.8S19.07 192 32 192h255.1c12.94 0 24.62 7.781 29.58 19.75S319.8 237.5 310.6 246.6z"/></svg>
+                        </div>
+                        <button class="yellow_btn color_brown">科目選択へ進む</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 試験教科選択 -->
+        <div class="modal_wrapper">
+            <div class="modal_contents">
+                <div class="modal_close">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <div class="modal_main_contents" id="select_subject_2"><!-- モーダルの白い部分 -->
+                    <div class="grid">
+                        <h2 class="color_brown title">試験を開始する - 科目を選択する</h2>
+                        <div>
+                            <select name="" class="select_box color_brown">
+                                <option value="" disabled selected style="display:none;">科目を選択してください</option>
+                                <option value="サンプル1">サンプル1</option>
+                                <option value="サンプル2">サンプル2</option>
+                                <option value="サンプル3">サンプル3</option>
+                            </select>
+                            <svg width=60px height=60px xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><g fill="#46380D"><path d="M310.6 246.6l-127.1 128C176.4 380.9 168.2 384 160 384s-16.38-3.125-22.63-9.375l-127.1-128C.2244 237.5-2.516 223.7 2.438 211.8S19.07 192 32 192h255.1c12.94 0 24.62 7.781 29.58 19.75S319.8 237.5 310.6 246.6z"/></svg>
+                        </div>
+                        <button class="lightgray_btn color_brown">教科選択へ戻る</button>
+                        <button class="yellow_btn color_brown">次へ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 試験出題設定＆問題数と制限時間 -->
+        <div class="modal_wrapper">
+            <div class="modal_contents">
+                <div class="modal_close">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <div class="modal_main_contents" id="set_question_1">
+                    <div class="grid">
+                        <h2 class="color_brown title">試験を開始する - 出題形式</h2>
+                        <dl>
+                            <dt class="color_brown">出題問題数</dt>
+                            <dd class="color_brown"><input type="text" class="input color_brown"><span>問</span></dd>
+                        </dl>
+                        <dl>
+                            <dt class="color_brown">制限時間</dt>
+                            <dd class="color_brown"><input type="text" class="input color_brown"><span>分</span></dd>
+                        </dl>
+                        <div class="check_wrap">
+                            <label class="my_checkbox">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <p class="check_font color_brown">難易度による傾斜配点を行う</p>
+                            </label>
+                        </div>
+                        
+                        <button class="lightgray_btn color_brown">科目選択へ戻る</button>
+                        <button class="yellow_btn color_brown">次へ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 試験出題設定＆問題選択 -->
+        <div class="modal_wrapper">
+            <div class="modal_contents">
+                <div class="modal_close">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <div class="modal_main_contents" id="set_question_2">
+                    <div class="grid">
+                        <h2 class="color_brown title">試験を開始する - 出題設定</h2>
+                        <div class="scroll_box">
+                            <div id="table2">
+                                <div class="row">
+                                    <div class="cell_num color_brown">
+                                        <label class="my_checkbox">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                            <p class="check_font color_brown">文法問題 : be going to 〜【1】</p>
+                                        </label>
+                                    </div>
+                                    <div class="cell_detail"><button class="limegreen_btn">問題を見る</button></div>
+                                </div>
+                                <div class="row">
+                                    <div class="cell_num color_brown">
+                                        <label class="my_checkbox">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                            <p class="check_font color_brown">前方後円墳 : 主に日本列島で3世紀から7世紀初期に作られた鍵穴型の形が特徴的な大王や豪族の墓を何というか？</p>
+                                        </label>
+                                    </div>
+                                    <div class="cell_detail"><button class="limegreen_btn">問題を見る</button></div>
+                                </div>
+                                <div class="row">
+                                    <div class="cell_num color_brown">
+                                        <label class="my_checkbox">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                            <p class="check_font color_brown">前方後円墳 : 主に日本列島で3世紀から7世紀初期に作られた鍵穴型の形が特徴的な大王や豪族の墓を何というか？</p>
+                                        </label>
+                                    </div>
+                                    <div class="cell_detail"><button class="limegreen_btn">問題を見る</button></div>
+                                </div>
+                                <div class="row">
+                                    <div class="cell_num color_brown">
+                                        <label class="my_checkbox">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                            <p class="check_font color_brown">前方後円墳 : 主に日本列島で3世紀から7世紀初期に作られた鍵穴型の形が特徴的な大王や豪族の墓を何というか？</p>
+                                        </label>
+                                    </div>
+                                    <div class="cell_detail"><button class="limegreen_btn">問題を見る</button></div>
+                                </div>
+                                <div class="row">
+                                    <div class="cell_num color_brown">
+                                        <label class="my_checkbox">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                            <p class="check_font color_brown">前方後円墳 : 主に日本列島で3世紀から7世紀初期に作られた鍵穴型の形が特徴的な大王や豪族の墓を何というか？</p>
+                                        </label>
+                                    </div>
+                                    <div class="cell_detail"><button class="limegreen_btn">問題を見る</button></div>
+                                </div>
+                                <div class="row">
+                                    <div class="cell_num color_brown">
+                                        <label class="my_checkbox">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                            <p class="check_font color_brown">前方後円墳 : 主に日本列島で3世紀から7世紀初期に作られた鍵穴型の形が特徴的な大王や豪族の墓を何というか？</p>
+                                        </label>
+                                    </div>
+                                    <div class="cell_detail"><button class="limegreen_btn">問題を見る</button></div>
+                                </div>
+                                <div class="row">
+                                    <div class="cell_num color_brown">
+                                        <label class="my_checkbox">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                            <p class="check_font color_brown">前方後円墳 : 主に日本列島で3世紀から7世紀初期に作られた鍵穴型の形が特徴的な大王や豪族の墓を何というか？</p>
+                                        </label>
+                                    </div>
+                                    <div class="cell_detail"><button class="limegreen_btn">問題を見る</button></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="btn_wrap">
+                            <button class="lightgray_btn color_brown">出題形式へ戻る</button>
+                            <button class="yellow_btn color_brown">次へ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 先生側試験中 -->
+        <div class="modal_wrapper">
+            <div class="modal_contents">
+                <div class="modal_close">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <div class="modal_main_contents">
+                    <div class="title_head">
+                        <div class="brown_btn">試験中</div>
+                        <div class="title">
+                            <p class="color_brown time_limit">残り時間</p>
+                            <p class="color_brown">03:09</p>
+                        </div>
+                    </div>
+                    <div id="table3">
+                        <div class="tr">
+                            <div class="test_name_white"></div>
+                            <div class="test_cell_head tooltip">1
+                                <div class="balloon_top">
+                                    <p class="balloon_p">前方後円墳:主に日本列島で3世紀から7世紀初期に作られた鍵穴型の形が特徴的な大王や豪族の墓…</p>
+                                    <div class="yellow_btn_balloon"><button class="yellow_btn color_brown">問題をみる</button></div>
+                                </div>
+                            </div>
+                            <div class="test_cell_head tooltip">2</div>
+                            <div class="test_cell_head tooltip">3</div>
+                            <div class="test_cell_head tooltip">4</div>
+                            <div class="test_cell_head tooltip">5</div>
+                            <div class="test_cell_head tooltip">6</div>
+                            <div class="test_cell_head tooltip">7</div>
+                        </div>
+                        <div class="tr">
+                            <div class="test_name">Lv.12 中川結以花</div>
+                            <div class="test_cell tooltip_ans">○<div class="balloon_ans">ア</div></div>
+                            <div class="test_cell">○</div>
+                            <div class="test_cell">○</div>
+                            <div class="test_cell">○</div>
+                            <div class="test_cell">○</div>
+                            <div class="test_cell">○</div>
+                            <div class="test_cell">○</div>
+                        </div>
+                        <div class="tr">
+                            <div class="test_name">Lv.12 中川結以花</div>
+                            <div class="test_cell">○</div>
+                            <div class="test_cell">○</div>
+                            <div class="test_cell">○</div>
+                            <div class="test_cell">○</div>
+                            <div class="test_cell">○</div>
+                            <div class="test_cell">○</div>
+                            <div class="test_cell">○</div>
+                        </div>
+                    </div>
+
+                    <div class="btn_head">
+                        <div class="red_btn_head"><button class="red_btn color_white">中断</button></div>
+                        <div class="gray_btn_head"><button class="gray_btn color_white">一時停止</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 先生側試験終了1 -->
+        <div class="modal_wrapper">
+            <div class="modal_contents">
+                <div class="modal_close">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <div class="modal_main_contents">
+                    <div class="title_head">
+                        <div class="brown_btn">試験終了</div>
+                        <p class="color_brown title_p">試験が終了しました。<br>
+                            生徒はスコアボードを確認しています。
+                        </p>
+                    </div>
+
+                    <div id="table1">
+                        <div class="line">
+                            <div class="block">
+                                <div class="cell_top">ナカガワ</div>
+                                <div class="cell_bottom">確認OK</div>
+                            </div>
+                            <div class="block">
+                                <div class="cell_top">ナカガワ</div>
+                                <div class="cell_bottom">確認OK</div>
+                            </div>
+                            <div class="block">
+                                <div class="cell_top">ナカガワ</div>
+                                <div class="cell_bottom">確認OK</div>
+                            </div>
+                            <div class="block">
+                                <div class="cell_top">ナカガワ</div>
+                                <div class="cell_bottom">確認OK</div>
+                            </div>
+                            <div class="block">
+                                <div class="cell_top">ナカガワ</div>
+                                <div class="cell_bottom">確認OK</div>
+                            </div>
+                            <div class="block">
+                                <div class="cell_top">ナカガワ</div>
+                                <div class="cell_bottom">確認OK</div>
+                            </div>
+                            <div class="block">
+                                <div class="cell_top">ナカガワ</div>
+                                <div class="cell_bottom">確認OK</div>
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="block">
+                                <div class="cell_top">ナカガワ</div>
+                                <div class="cell_bottom">確認OK</div>
+                            </div>
+                            <div class="block">
+                                <div class="cell_top">ナカガワ</div>
+                                <div class="cell_bottom">確認OK</div>
+                            </div>
+                            <div class="block">
+                                <div class="cell_top">ナカガワ</div>
+                                <div class="cell_bottom">確認OK</div>
+                            </div>
+                            <div class="block">
+                                <div class="cell_top">ナカガワ</div>
+                                <div class="cell_bottom">確認OK</div>
+                            </div>
+                            <div class="block">
+                                <div class="cell_top">ナカガワ</div>
+                                <div class="cell_bottom">確認OK</div>
+                            </div>
+                            <div class="block">
+                                <div class="cell_top">ナカガワ</div>
+                                <div class="cell_bottom">確認OK</div>
+                            </div>
+                            <div class="block">
+                                <div class="cell_top">ナカガワ</div>
+                                <div class="cell_bottom">確認OK</div>
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="block">
+                                <div class="cell_top">ナカガワ</div>
+                                <div class="cell_bottom">確認OK</div>
+                            </div>
+                            <div class="block">
+                                <div class="cell_top">ナカガワ</div>
+                                <div class="cell_bottom">確認OK</div>
+                            </div>
+                            <div class="block">
+                                <div class="cell_top">ナカガワ</div>
+                                <div class="cell_bottom">確認OK</div>
+                            </div>
+                            <div class="block">
+                                <div class="cell_top">ナカガワ</div>
+                                <div class="cell_bottom">確認OK</div>
+                            </div>
+                            <div class="block">
+                                <div class="cell_top">ナカガワ</div>
+                                <div class="cell_bottom">確認OK</div>
+                            </div>
+                            <div class="block">
+                                <div class="cell_top">ナカガワ</div>
+                                <div class="cell_bottom">確認OK</div>
+                            </div>
+                            <div class="block">
+                                <div class="cell_top">ナカガワ</div>
+                                <div class="cell_bottom">確認OK</div>
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="block">
+                                <div class="cell_top">ナカガワ</div>
+                                <div class="cell_bottom">確認OK</div>
+                            </div>
+                            <div class="block">
+                                <div class="cell_top">ナカガワ</div>
+                                <div class="cell_bottom">確認OK</div>
+                            </div>
+                            <div class="block">
+                                <div class="cell_top">ナカガワ</div>
+                                <div class="cell_bottom">確認OK</div>
+                            </div>
+                            <div class="block">
+                                <div class="cell_top">ナカガワ</div>
+                                <div class="cell_bottom">確認OK</div>
+                            </div>
+                            <div class="block">
+                                <div class="cell_top">ナカガワ</div>
+                                <div class="cell_bottom">確認OK</div>
+                            </div>
+                            <div class="block">
+                                <div class="cell_top">ナカガワ</div>
+                                <div class="cell_bottom">確認OK</div>
+                            </div>
+                            <div class="block">
+                                <div class="cell_top">ナカガワ</div>
+                                <div class="cell_bottom">確認OK</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="yellow_btn_head"><button class="yellow_btn color_brown">解説画面へ</button></div>
+                </div>
+            </div>
+        </div>
+        <!-- 先生側試験終了2 -->
+        <div class="modal_wrapper">
+            <div class="modal_contents">
+                <div class="modal_close">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <div class="modal_main_contents">
+                    <div class="title_head">
+                        <div class="brown_btn">試験終了</div>
+                        <p class="color_brown title_p">試験が終了しました。<br>
+                            生徒はスコアボードを確認しています。
+                        </p>
+                    </div>
+                    <div class="scroll_box">
+                        <div id="table2">
+                            <div class="row">
+                                <div class="cell_num color_brown">問1</div>
+                                <div class="cell_num color_brown">60%</div>
+                                <div class="cell_detail"><button class="yellow_btn color_brown">問題をみる</button></div>
+                                <div class="cell_detail"><button class="yellow_btn color_brown">解説</button></div>
+                            </div>
+                            <div class="row">
+                                <div class="cell_num color_brown">問2</div>
+                                <div class="cell_num color_brown">60%</div>
+                                <div class="cell_detail"><button class="yellow_btn color_brown">問題をみる</button></div>
+                                <div class="cell_detail"><button class="yellow_btn color_brown">解説</button></div>
+                            </div>
+                            <div class="row">
+                                <div class="cell_num color_brown">問3</div>
+                                <div class="cell_num color_brown">60%</div>
+                                <div class="cell_detail"><button class="yellow_btn color_brown">問題をみる</button></div>
+                                <div class="cell_detail"><button class="yellow_btn color_brown">解説</button></div>
+                            </div>
+                            <div class="row">
+                                <div class="cell_num color_brown">問4</div>
+                                <div class="cell_num color_brown">60%</div>
+                                <div class="cell_detail"><button class="yellow_btn color_brown">問題をみる</button></div>
+                                <div class="cell_detail"><button class="yellow_btn color_brown">解説</button></div>
+                            </div>
+                            <div class="row">
+                                <div class="cell_num color_brown">問5</div>
+                                <div class="cell_num color_brown">60%</div>
+                                <div class="cell_detail"><button class="yellow_btn color_brown">問題をみる</button></div>
+                                <div class="cell_detail"><button class="yellow_btn color_brown">解説</button></div>
+                            </div>
+                            <div class="row">
+                                <div class="cell_num color_brown">問6</div>
+                                <div class="cell_num color_brown">60%</div>
+                                <div class="cell_detail"><button class="yellow_btn color_brown">問題をみる</button></div>
+                                <div class="cell_detail"><button class="yellow_btn color_brown">解説</button></div>
+                            </div>
+                            <div class="row">
+                                <div class="cell_num color_brown">問7</div>
+                                <div class="cell_num color_brown">60%</div>
+                                <div class="cell_detail"><button class="yellow_btn color_brown">問題をみる</button></div>
+                                <div class="cell_detail"><button class="yellow_btn color_brown">解説</button></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="yellow_btn_head"><button class="yellow_btn color_brown">試験を終了</button></div>
+                </div>
+            </div>
+        </div>
+        <!-- 先生側試験終了3 -->
+        <div class="modal_wrapper">
+            <div class="modal_contents">
+                <div class="modal_close">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <div class="modal_main_contents">
+                    <p class="brown_btn color_brown" id="finish">試験終了</p>
+                    <h2 id="explain" class="color_brown title">問3の解説を表示しています。</h2>
+                    <button class="red_btn color_brown" id="close">閉じる</button>
+                    <div id="t_answer">
+                        <p id="result" class="color_brown">問3の答えは・・・<span>「①」</span></p>
+                        <p id="explanation_img" class="color_brown">解説画像？</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 問題を見る -->
+        <div class="modal_wrapper">
+            <div class="modal_contents">
+                <div class="modal_close">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <div class="modal_main_contents color_brown">
+                    <div id="question_check">
+                        <div id="question_sentence">
+                            <h2 class="color_brown">文法問題：be aware of A【1】</h2>
+                        </div>
+                        <p id="question_content">I was not <span class="question_mark"></span> of her being famous movie star.</p>
+                        <form>
+                            <div id="select_answer">
+                                <input type="radio" id="q1" name="answer" value="q1"><label for="q1">①&nbsp;notice</label>
+                                <input type="radio" id="q2" name="answer" value="q1"><label for="q2">②&nbsp;know</label>
+                                <input type="radio" id="q3" name="answer" value="q1"><label for="q3" class="question_answer">③&nbsp;aware</label>
+                                <input type="radio" id="q4" name="answer" value="q1"><label for="q4">④&nbsp;see</label>
+                            </div>
+                        </form>
+                        <button id="close_btn" class="red_btn">閉じる</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

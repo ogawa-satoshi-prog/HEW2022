@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>QuestMeeting</title>
+        <meta content="タイトル" name="title">
+        <meta content="ディスクリプション" name="description">
+        <meta content="キーワード" name="keywords">
+        <link href="./css/destyle.css" rel="stylesheet">
+        <link href="./css/modal.css" rel="stylesheet">
+        <link href="./css/common.css" rel="stylesheet">
+        <link href="./css/parts.css" rel="stylesheet">
+        <link href="./css/s_kaisetutyuu.css" rel="stylesheet">
+        <link href="./css/mondaiwomiru.css" rel="stylesheet">
+        <!-- フォントの初期設定 -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&family=New+Tegomin&family=Noto+Sans+JP:wght@100;300;400;500;700;900&family=Noto+Serif+JP:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <style>
+            html{
+                font-family: 'Noto Sans JP', sans-serif;
+                font-weight: 700;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- font-awesome -->
+        <script src="https://kit.fontawesome.com/03ebcee952.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <main>
+            
+        </main>
+        <div class="modal_wrapper">
+            <div class="modal_contents">
+                <div class="modal_close">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <div class="modal_main_contents color_brown">
+                    <div id="question_check">
+                        <div id="question_sentence">
+                            <h2 class="color_brown">文法問題：be aware of A【1】</h2>
+                        </div>
+                        <p id="question_content">I was not <span class="question_mark"></span> of her being famous movie star.</p>
+                        <form>
+                            <div id="select_answer">
+                                <input type="radio" id="q1" name="answer" value="q1"><label for="q1">①&nbsp;notice</label>
+                                <input type="radio" id="q2" name="answer" value="q1"><label for="q2">②&nbsp;know</label>
+                                <input type="radio" id="q3" name="answer" value="q1"><label for="q3" class="question_answer">③&nbsp;aware</label>
+                                <input type="radio" id="q4" name="answer" value="q1"><label for="q4">④&nbsp;see</label>
+                            </div>
+                        </form>
+                        <button id="close_btn" class="red_btn">閉じる</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -35,17 +35,20 @@
 
 <body>
   <div id="body">
-    <form id="main" method="post">
-      <h1 class="color_brown"><span>QuestMeeting</span></h1>
+    <form action="/" id="main" method="post">
+      <h1 class="color_brown"><span>モロコシクエスト</span></h1>
       <div id="input_area">
         <div class="color_brown">
           <p>ログインID</p>
-          <input type="text" class="input" name="id">
+          <input type="text" class="input" name="id" value="<%= loginId %>">
         </div>
         <div class="color_brown">
           <p>パスワード</p>
-          <input type="password" class="input" name="password">
+          <input type="password" class="input" name="password" value="<%= password %>">
         </div>
+      </div>
+      <div style="transform: translate(-50%, -50%); width: max-content; position: absolute; left: 50%; right: 50%; bottom: 33%; color: red;">
+        <%= alert %>
       </div>
       <div id="check">
         <label class="my_checkbox color_brown">

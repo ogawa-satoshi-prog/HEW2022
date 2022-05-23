@@ -135,26 +135,39 @@
 }
 
 /* テーブル3 */
+#table3_wrapper{ 
+  width: 90%;
+  height: 70%;
+  margin: 30px;
+  overflow: scroll;
+}
+
 #table3{
   width: 70%;
   table-layout: fixed;
   margin: 0 auto;
   margin-top: 70px;
   margin-bottom: 50px;
+  border-spacing: 2px;
+  max-height: 600px;
 }
 
-#table3 .tr{
+#table3 th,#table td{
+  border-collapse: separate;
+  border-spacing: 2px;
+}
+
+#table3 tr{
   width: 100%;
   height: 40px;
-  display: flex;
 }
-#table3 .tr .test_name_white{
+#table3 tr .test_name_white{
   width: 200px;
   height: 39px;
   background-color: rgba(255, 255, 255, 0);
   border: solid 1px white;
 }
-#table3 .tr .test_name{
+#table3 tr .test_name{
   width: 200px;
   height: 39px;
   background-color: #46380D;
@@ -165,7 +178,7 @@
   padding-left: 15px;
   border: solid 1px white;
 }
-#table3 .tr .test_cell_head{
+#table3 tr .test_cell_head{
   width: 46px;
   height: 39px;
   background-color: #46380D;
@@ -174,77 +187,99 @@
   line-height: 39px;
   font-size: 20px;
   border: solid 1px white;
+  position: relative;
 }
-#table3 .tr .test_cell{
+#table3 tr .test_cell{
   width: 46px;
   height: 39px;
   background-color: rgb(255, 252, 201);
   text-align: center;
   border: solid 1px white;
+  position: relative;
+  cursor: pointer;
 }
 
 /**吹き出し問題文**/
 .tooltip{
   cursor: pointer;
 }
-.balloon_top { /* ツールチップのスタイル */
+
+.balloon_question_content{
+  max-width: 400px;
+  height: max-content;
   display: flex;
-  width: 500px; /* 横幅 */
-  height: 60px;
-  position: absolute;
-  left: 60%;
-  bottom: 80%; /* Y軸の位置 */
-  transform: translateX(-40%);
-  margin-bottom: 5px;
-  padding: 8px;
-  border-radius: 10px; /* 角の丸み */
-  background-color: white; /* ツールチップの背景色 */
-  border: solid 1px#46380D;
-  font-size: 0.7em;
-  font-weight: 100;
-  color: #46380D;
-  text-align: center;
-  visibility: hidden; /* ツールチップを非表示に */
-  opacity: 0; /* 不透明度を0％に */
-  z-index: 1;
-  transition: 0.5s all; /* マウスオーバー時のアニメーション速度 */
+  justify-content: flex-start;
+  text-align: start;
+  font-size: 14px;
+  line-height: 21px;
+  margin: 0 5px;
 }
 
-.balloon_top::before { /* 吹き出しの「しっぽ」のスタイル */
-  content: "";
-  width: 0;
-  height: 0;
-  border: 10px solid transparent;
-  border-top: 12px solid white; /* 最後の値は「ツールチップの背景色」と合わせる */
+.balloon2 {
   position: absolute;
-  top: 99%;
-  left: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 120px;
+  color: #56481A;
+  font-size: 16px;
+  background: #FFF;
+  border: solid 4px #56481A;
+  box-sizing: border-box;
+  width: max-content;
+  height: 60px;
+  border-radius: 10px;
+  left: 50%;
   transform: translateX(-50%);
-  bottom: -15px;
-  margin-left: -15px;
+  top: -170%;
+  padding: 0 5px;
+}
+
+.balloon2:before {
+  content: "";
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 12px solid transparent;
+  border-top: 12px solid #FFF;
   z-index: 2;
 }
-.balloon_top::after {
+
+.balloon2:after {
   content: "";
-  width: 0;
-  height: 0;
-  border: 11px solid transparent;
-  border-top: 13px solid #46380D;
   position: absolute;
-  top: 99%;
-  left: 20%;
-  bottom: -15px;
+  bottom: -30px;
+  left: 50%;
   transform: translateX(-50%);
-  margin-left: -15px;
+  border: 14px solid transparent;
+  border-top: 14px solid #56481A;
   z-index: 1;
 }
-.balloon_p{
-  display: block;
-  height: 50px;
-  line-height: 15px;
-  text-align: left;
-  width: 65%;
+
+.btn_in_balloon{
+  width: 90px;
+  height: 35px;
+  margin: 5px;
+  padding-top: 4px;
+  font-size: 14px;
+  display: flex;
+  background-color: #FFDD38;
+  font-weight: 600;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  transition: .2s;
 }
+
+.btn_in_balloon:hover{
+  background-color: #af9928;
+}
+
+.active_balloon{
+  z-index: 100;
+}
+
 .yellow_btn_balloon{
   width: 35%;
   height: 40px;
@@ -258,12 +293,7 @@
   line-height: 40px;
   font-size: 18px;
 }
- 
-.tooltip:hover .balloon_top { /* マウスオーバー時のスタイル */
-  bottom: 78%; /* Y軸の位置 */
-  visibility: visible; /* ツールチップを表示 */
-  opacity: 1; /* 不透明度を100％に */
-}
+
 
 /**吹き出し答えたやつ**/
 .tooltip_ans{
@@ -323,6 +353,31 @@
   bottom: 72%; /* Y軸の位置 */
   visibility: visible; /* ツールチップを表示 */
   opacity: 1; /* 不透明度を100％に */
+}
+
+.circle{
+  color: blue;
+  font-weight: bold!important;
+}
+
+.clear{
+  color: #FF2A00;
+  font-size: 28px!important;
+  font-weight: bold!important;
+}
+
+.remove{
+  color: #56481A;
+  font-size: 28px!important;
+  font-weight: bold!important;
+}
+
+.circle,.clear,.remove{
+  width: 100%;
+  height: 100%;
+  display: flex!important;
+  justify-content: center;
+  align-items: center;
 }
 
 /* 先生側TOP */

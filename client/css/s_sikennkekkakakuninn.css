@@ -8,35 +8,30 @@
 }
 #status #character{/* キャラクター画像 */
     position: absolute;
-    top: 0%;
-    left: 5%;
+    top: 0px;
+    left: 0px;
 }
 #status #name{/* ユーザ名 */
     position: absolute;
-    top: 0%;
-    left: 20%;
-}
-#status #exp{/* 経験値バー */
-    position: absolute;
-    top: 0%;
-    left: 40%;
+    top: 12px;
+    left: 90px;
 }
 #status #level{/* レベル（画像?） */
     position: absolute;
     top: 0%;
-    left: 80%;
+    left: 400px;
 }
 /* 結果一覧テーブル */
 #result_table{
     position: absolute;
-    top: 17.5%;
+    top: 100px;
     left: 50%;
     transform: translate(-50%, 0%);
 }
 /* 「確認OK」ボタン */
 #confirm{
     position: absolute;
-    bottom: 0%;
+    top: 600px;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -57,18 +52,16 @@
     border-radius: 15px;
     padding: 0.5rem;
 }
-#status #level{/* レベル（画像?） */
-
-}
 /* 結果一覧テーブル */
 #result_table{
-    width: 75%;
-    height: 60%;
+    width: 700px;
+    height: 400px;
     font-size: larger;
     font-weight: 1200;
     text-align: center;
-    display: block;/* ここの2行でテーブルをスクロールできるようにしている */
+    display: block;
     overflow-y: scroll;
+    margin-top: 20px;
 }
 /* スクロールの幅の設定 */
 #result_table::-webkit-scrollbar {

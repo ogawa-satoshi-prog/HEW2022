@@ -5,7 +5,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
-h2{/* 「先生が解説中です・・・」 */
+/* h2 */#title_h2{/* 「先生が解説中です・・・」 */
     position: absolute;
     top: 20%;
     left: 10%;

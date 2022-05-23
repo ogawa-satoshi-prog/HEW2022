@@ -21,10 +21,11 @@ main {
 .modal_wrapper {
   width: 100vw;
   height: 100vh;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 10;
@@ -268,10 +269,6 @@ main {
   /* スクロールバーのつまみ */
 }
 
-#set_question_2 h2 {
-  margin-top: 40px;
-}
-
 #set_question_2 .my_checkbox {
   margin: 0;
   height: 44px;
@@ -293,10 +290,10 @@ main {
 
 #set_question_2 .scroll_box {
   /* background-color: red; */
-  margin-top: 50px;
-  margin-bottom: 50px;
+  /* margin-top: 50px;
+        margin-bottom: 50px; */
   width: 100%;
-  height: 450px;
+  height: 350px;
   /* padding: 70px; */
   border-radius: 13px;
   box-shadow: 0 0 8px #c8c8c8;
@@ -378,3 +375,4 @@ main {
   text-align: center;
   font-weight: 500;
 }
+/*# sourceMappingURL=modal.css.map */

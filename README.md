@@ -1,2 +1,2 @@
 # quest_meeting
-クライアントサイドのjsを担当
+主にクライアントサイドのjsを担当(ogawa-satoshi-prog)
